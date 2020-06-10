@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Menu_sys : MonoBehaviour
+public class Item_sys : MonoBehaviour
 {
     [SerializeField]
-    GameObject Menu;
+    GameObject Item_controller;
 
     [SerializeField]
     GameObject[] Item;
@@ -18,13 +18,13 @@ public class Menu_sys : MonoBehaviour
     [SerializeField, Range(0.0f, 5.0f)]
     float cool = 5.0f; // Cool Down
 
-    int Item_num;
+    int Item_num; //Item 選択判定
     bool[] Item_flag = new bool[6]; //Item Cool Down 判定する変数
 
     void Start()
     {
         Item_flag_init();
-        Menu.SetActive(false);
+        Item_controller.SetActive(false);
     }
 
     void Update()
@@ -35,7 +35,7 @@ public class Menu_sys : MonoBehaviour
 
         if (Input.GetKey("joystick button 5")) //Button_R_B
         {
-            Menu.SetActive(true);
+            Item_controller.SetActive(true);
 
             if ((Rsh != 0) || (Rsv != 0))
             {
@@ -47,7 +47,7 @@ public class Menu_sys : MonoBehaviour
         if (Input.GetKeyUp("joystick button 5")) //Button_R_B
         {
             Item_use(Item_num);
-            Menu.SetActive(false);
+            Item_controller.SetActive(false);
         }
     }
 
@@ -171,7 +171,7 @@ public class Menu_sys : MonoBehaviour
     /// <param name="Item_num">Items List</param>
     /// <param name="cool">Cool Down</param>
     /// <returns></returns>
-    IEnumerator CoolTime (int Item_num, float cool)
+    IEnumerator CoolTime(int Item_num, float cool)
     {
         if (!Item_flag[Item_num]) yield break;
 
@@ -180,7 +180,7 @@ public class Menu_sys : MonoBehaviour
         while (cool > 1.0f)
         {
             cool -= Time.deltaTime;
-            
+
             img_Skill[Item_num].GetComponent<Image>().fillAmount = (1.0f / cool);
             yield return new WaitForFixedUpdate();
         }
@@ -189,5 +189,4 @@ public class Menu_sys : MonoBehaviour
         Debug.Log("End" + Item_flag[Item_num]);
     }
 
-  
 }
