@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/ProgramerFile/Nagashima/Title.unity
+    guid: 23a87bcb826b97741870f3fc73707dd2
+  - enabled: 1
+    path: Assets/ProgramerFile/Nagashima/Movie.unity
+    guid: 928ce8dfa10f5dd44b91cf6104251b93
+  - enabled: 1
+    path: Assets/ProgramerFile/Nagashima/Main.unity
+    guid: 0b46376eac86cd442b4b279cd8e94810
   m_configObjects: {}
