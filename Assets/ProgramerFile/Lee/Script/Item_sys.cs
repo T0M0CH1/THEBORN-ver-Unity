@@ -6,22 +6,36 @@ using UnityEngine.UI;
 public class Item_sys : MonoBehaviour
 {
     [SerializeField]
-    GameObject Item_controller;
+    private Player player;
 
     [SerializeField]
-    GameObject[] Item;
+    private GameObject Item_controller;
 
     [SerializeField]
-    Image[] img_Skill;
+    private GameObject[] Item; //Item選択画面
 
+    [SerializeField]
+    private Image[] img_Skill;// CoolDown確認UI
 
-    [SerializeField, Range(0.0f, 5.0f)]
-    float cool = 5.0f; // Cool Down
+    [SerializeField]
+    private Image img_Item_Hending; // アイテム装備中UI
 
-    int Item_num; //Item 選択判定
-    bool[] Item_flag = new bool[6]; //Item Cool Down 判定する変数
+    [Header("アイテム選択中のスピード"),SerializeField, Range(0.0f, 1.0f)]
+    private float Game_Speed = 1.0f;
 
-    void Start()
+    [Header("アイテム再使用時間"),SerializeField, Range(0.0f, 5.0f)]
+    private float cool = 5.0f; // Cool Down
+
+    private int Item_num; //Item 選択判定
+    private bool[] Item_flag; //Item Cool Down 判定する変数
+
+    //intput
+    private float Rsh; // Game_Pad 右スティックの右左を取得
+    private float Rsv; // Game_Pad 右スティックの上下を取得
+
+    //------------------------------------------------------------------
+
+    void Awake()
     {
         Item_flag_init();
         Item_controller.SetActive(false);
@@ -29,25 +43,27 @@ public class Item_sys : MonoBehaviour
 
     void Update()
     {
-
-        float Rsh = Input.GetAxis("R_Stick_H"); // Game_Pad 右スティックの右左を取得
-        float Rsv = Input.GetAxis("R_Stick_V"); // Game_Pad 右スティックの上下を取得
+        Rsh = Input.GetAxis("R_Stick_H"); // Game_Pad 右スティックの右左を取得
+        Rsv = Input.GetAxis("R_Stick_V"); // Game_Pad 右スティックの上下を取得
 
         if (Input.GetKey("joystick button 5")) //Button_R_B
         {
             Item_controller.SetActive(true);
+            Time.timeScale = Game_Speed;
 
             if ((Rsh != 0) || (Rsv != 0))
             {
                 Item_Select(GetAngle(Rsh, Rsv));
             }
-
+           
         }
 
         if (Input.GetKeyUp("joystick button 5")) //Button_R_B
         {
-            Item_use(Item_num);
             Item_controller.SetActive(false);
+            Time.timeScale = 1; //普通のスピード
+            Item_use(Item_num);
+            img_Item_Hending.GetComponent<Image>().sprite = Item[Item_num].GetComponent<Image>().sprite;
         }
     }
 
@@ -159,7 +175,9 @@ public class Item_sys : MonoBehaviour
     /// </summary>
     private void Item_flag_init()
     {
-        for (int i = 0; i < 6; i++)
+        Item_flag = new bool[Item.Length];
+
+        for (int i = 0; i < Item.Length; i++)
         {
             Item_flag[i] = true;
         }
