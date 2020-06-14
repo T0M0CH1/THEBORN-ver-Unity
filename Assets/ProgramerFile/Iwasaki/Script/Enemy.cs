@@ -5,13 +5,12 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField]
-    private Sprite[] enemyImage;
     private Rigidbody2D rb2D;
+    private Animator animator;
     void Start()
     {
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = enemyImage[0];
         rb2D = this.gameObject.GetComponent<Rigidbody2D>();
+        animator = this.gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -27,7 +26,7 @@ public class Enemy : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction * raydistance, Color.red);
         if (hit.collider)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = enemyImage[1];
+            animator.Play("Find");
             rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
         }                
     }
@@ -36,8 +35,7 @@ public class Enemy : MonoBehaviour
     {
         if(collision.gameObject.tag == "Ground")
         {
-            this.gameObject.transform.localScale = new Vector3(0.35f, 0.15f, 0);
-            StartCoroutine(waitTime(0.5f));
+            animator.Play("Shrink");
         }
     }
 
