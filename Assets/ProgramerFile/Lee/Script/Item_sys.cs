@@ -9,7 +9,7 @@ public class Item_sys : MonoBehaviour
     private Player player;
 
     [SerializeField]
-    private GameObject Item_controller;
+    private GameObject Item_Menu;
 
     [SerializeField]
     private GameObject[] Item; //Item選択画面
@@ -26,7 +26,7 @@ public class Item_sys : MonoBehaviour
     [Header("アイテム再使用時間"),SerializeField, Range(0.0f, 5.0f)]
     private float cool = 5.0f; // Cool Down
 
-    private int Item_num; //Item 選択判定
+    public int Item_num; //Item 選択判定
     private bool[] Item_flag; //Item Cool Down 判定する変数
 
     //intput
@@ -38,7 +38,7 @@ public class Item_sys : MonoBehaviour
     void Awake()
     {
         Item_flag_init();
-        Item_controller.SetActive(false);
+        Item_Menu.SetActive(false);
     }
 
     void Update()
@@ -48,7 +48,7 @@ public class Item_sys : MonoBehaviour
 
         if (Input.GetKey("joystick button 5")) //Button_R_B
         {
-            Item_controller.SetActive(true);
+            Item_Menu.SetActive(true);
             Time.timeScale = Game_Speed;
 
             if ((Rsh != 0) || (Rsv != 0))
@@ -60,10 +60,14 @@ public class Item_sys : MonoBehaviour
 
         if (Input.GetKeyUp("joystick button 5")) //Button_R_B
         {
-            Item_controller.SetActive(false);
+            Item_Menu.SetActive(false);
             Time.timeScale = 1; //普通のスピード
-            Item_use(Item_num);
             img_Item_Hending.GetComponent<Image>().sprite = Item[Item_num].GetComponent<Image>().sprite;
+        }
+
+        if (Input.GetKeyDown("joystick button 3") && Item_flag[Item_num])
+        {
+            Item_use(Item_num);
         }
     }
 
@@ -133,10 +137,10 @@ public class Item_sys : MonoBehaviour
     }
 
     /// <summary>
-    /// アイテム使用
+    /// アイテム処理
     /// </summary>
     /// <param name="Item_num">Itam list</param>
-    private void Item_use(int Item_num)
+    public void Item_use(int Item_num)
     {
         switch (Item_num)
         {
