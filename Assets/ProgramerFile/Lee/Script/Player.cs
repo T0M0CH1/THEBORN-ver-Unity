@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    //[SerializeField]
+    //Item_sys item_sys;
+
     [SerializeField, Range(0.0f,10.0f)]
     private float Move_Speed = 10.0f; //移動速度
 
     [SerializeField, Range(0.0f, 10.0f)]
     private float Slow_Speed = 5.0f;
-
 
     [SerializeField, Range(0.0f, 10.0f)]
     private float Jump_Power = 5.0f; //ジャンプ力
@@ -23,8 +25,10 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer renderer;
     private Animator animator;
-
+    
     public bool SW_Light = false;
+    public bool Quest = false;
+
     private bool is_Jumping = true;
     private bool is_Grounding = false; //キャラの着地判定
 
@@ -35,28 +39,35 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        //item_sys = GetComponent<Item_sys>();
     }
 
     void Update()
     {
         //joystick button 0 ＝ Button_A
-        if (Input.GetKeyDown("joystick button 0") && is_Grounding)
+        if (Input.GetKeyDown("joystick button 0") && is_Grounding) //ジャンプ
         {
             is_Jumping = true;
         }
 
         //joystick button 0 ＝ Button_B
-        if (Input.GetKeyDown("joystick button 1"))
+        if (Input.GetKeyDown("joystick button 1")) //ライト
         {
             //SW_Light = !SW_Light;
             Light_ON_OFF();
         }
 
-        //joystick button 3 = Button_Y
-        if (Input.GetKeyDown("joystick button 3"))
+        //joystick button 2 ＝ Button_X
+        if (Input.GetKey("joystick button 2")) //探索
         {
-            Item_Use();
+            //探索できるオブジェクト判定を追加必要（ray Cast）
+            Debug.Log("探索している");
         }
+
+        //joystick button 3 = Button_Y
+        //if (Input.GetKeyDown("joystick button 3"))
+        //{
+        //}
 
     }
 
@@ -68,7 +79,7 @@ public class Player : MonoBehaviour
 
     void LateUpdate()
     {
-        SetAnimator();
+        initAnimator();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -108,7 +119,7 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// ライト処理
     /// </summary>
     void Light_ON_OFF()
     {
@@ -126,11 +137,6 @@ public class Player : MonoBehaviour
         } 
     }
 
-    void Item_Use()
-    {
-
-    }
-
     /// <summary>
     /// キャラのジャンプ処理
     /// </summary>
@@ -145,9 +151,13 @@ public class Player : MonoBehaviour
         is_Jumping = false;
     }
 
-    void SetAnimator()
+    /// <summary>
+    /// アニメーション専用変数更新
+    /// </summary>
+    void initAnimator()
     {
         animator.SetBool("is_Grounding", is_Grounding);
+        animator.SetBool("Quest", Quest);
         animator.SetFloat("Move_Velocity", Move_Velocity.x);
     }
 }
