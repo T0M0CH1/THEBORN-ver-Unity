@@ -25,14 +25,16 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer renderer;
     private Animator animator;
-    
-    public bool SW_Light = false;
-    public bool Quest = false;
 
-    private bool is_Jumping = true;
-    private bool is_Grounding = false; //キャラの着地判定
-
+    //アニメーション（モーション）切り替える変数
     //------------------------------------------------------------------
+    private bool SW_Light = false;
+    private bool Quest = false;
+    private bool Light = false;
+    private bool is_Grounding = false; //キャラの着地判定
+    //------------------------------------------------------------------
+                  
+    private bool is_Jumping = true;
 
     void Awake()
     {
@@ -60,8 +62,14 @@ public class Player : MonoBehaviour
         //joystick button 2 ＝ Button_X
         if (Input.GetKey("joystick button 2")) //探索
         {
+            Quest = true;
             //探索できるオブジェクト判定を追加必要（ray Cast）
             Debug.Log("探索している");
+        }
+
+        if (Input.GetKeyUp("joystick button 2")) //探索
+        {
+            Quest = false;         
         }
 
         //joystick button 3 = Button_Y
@@ -158,6 +166,7 @@ public class Player : MonoBehaviour
     {
         animator.SetBool("is_Grounding", is_Grounding);
         animator.SetBool("Quest", Quest);
+        animator.SetBool("Light", Light);
         animator.SetFloat("Move_Velocity", Move_Velocity.x);
     }
 }
