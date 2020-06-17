@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
     private Rigidbody2D rb2D;
-    private Animator animator;
-    [SerializeField]
-    private GameObject player;
+    private Animator animator;    
     private bool onGroundBool;
     [SerializeField]
     private Collider2D perceptionPlayer;
+    [SerializeField]
+    private GameObject player;
     void Start()
     {
         rb2D = this.gameObject.GetComponent<Rigidbody2D>();
@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(player.transform.rotation);
         //オブジェクトから下側にRayを伸ばす
         //Ray2D ray = new Ray2D(transform.position, Vector2.down);
 
@@ -36,7 +37,10 @@ public class Enemy : MonoBehaviour
         //}
         if (onGroundBool)
         {
-            this.transform.position = Vector3.MoveTowards(transform.position, new Vector2(player.transform.position.x, -2.8f), Time.deltaTime);
+            onGroundBool = false;
+            gameObject.SetActive(false);
+            GameObject obj = (GameObject)Resources.Load("GroundEnemy");
+            GameObject instance = (GameObject)Instantiate(obj,new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f),Quaternion.identity);
         }
     }
 
@@ -45,15 +49,10 @@ public class Enemy : MonoBehaviour
         if(collision.gameObject.tag == "Ground")
         {
             animator.Play("Shrink");
-            onGroundBool = true;
+            StartCoroutine(WaitTime(1.8f));
         }
     }         
 
-    IEnumerator waitTime(float time)
-    {
-        new WaitForSeconds(time);
-        yield break;
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
@@ -63,9 +62,17 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && player.transform.localScale.x == -0.12f)
         {            
             rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
+    }
+
+    IEnumerator WaitTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        perceptionPlayer.enabled = false;
+        onGroundBool = true;
+        yield break;
     }
 }
