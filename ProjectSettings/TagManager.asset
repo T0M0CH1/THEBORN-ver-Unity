@@ -5,8 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Enemy
-  - HalfwayPoint
   layers:
   - Default
   - TransparentFX
@@ -14,6 +12,7 @@ TagManager:
   - 
   - Water
   - UI
+  - 
   - 
   - 
   - Player
@@ -29,8 +28,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - BackGround
   - 
   - 
   - 
