@@ -20,8 +20,7 @@ public class Enemy : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        Debug.Log(player.transform.rotation);
+    {        
         //オブジェクトから下側にRayを伸ばす
         //Ray2D ray = new Ray2D(transform.position, Vector2.down);
 
@@ -57,7 +56,7 @@ public class Enemy : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            animator.Play("Find");            
+            animator.SetBool("toFind", true);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -65,6 +64,10 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Player" && player.transform.localScale.x == -0.12f)
         {            
             rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+        else
+        {
+            animator.SetBool("toFind", false);
         }
     }
 
