@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
         if (onGroundBool)
         {
             onGroundBool = false;
-            gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
             GameObject obj = (GameObject)Resources.Load("GroundEnemy");
             GameObject instance = (GameObject)Instantiate(obj,new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f),Quaternion.identity);
         }

@@ -7,7 +7,7 @@ public class Title : MonoBehaviour
 {
     public void toSTART()
     {
-        Player.halfwayBool = false;
+        Player_Iwasaki.halfwayBool = false;
         SceneManager.LoadScene("Iwasaki");
     }
     public void toCONTINUE()
