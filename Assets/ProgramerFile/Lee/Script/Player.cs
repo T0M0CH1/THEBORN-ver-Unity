@@ -14,7 +14,10 @@ public class Player : MonoBehaviour
     private float Slow_Speed = 5.0f;
 
     [SerializeField, Range(0.0f, 10.0f)]
-    private float Jump_Power = 5.0f; //ジャンプ力
+    private float Jump_Power = 5.0f; //ジャンプ＿力
+
+    [SerializeField]
+    private GameObject Hend_Light;
 
     private Vector3 Move_Velocity; //移動方向
     private Vector2 Jump_Velocity; //ジャンプ方向
@@ -114,13 +117,15 @@ public class Player : MonoBehaviour
         if (hori < 0)
         {
             Move_Velocity = new Vector3(hori,0,0);
-            renderer.flipX = true; // renderer反転
+            transform.localScale = new Vector3(-1, 1, 1);
+            //renderer.flipX = true; // renderer反転
         }
 
         else if (hori > 0)
         {
             Move_Velocity = new Vector3(hori, 0, 0);
-            renderer.flipX = false;
+            transform.localScale = new Vector3(1, 1, 1);
+            //renderer.flipX = false;
         }
 
         transform.position += Move_Velocity * Move_Speed * Time.deltaTime;
@@ -132,17 +137,19 @@ public class Player : MonoBehaviour
     void Light_ON_OFF()
     {
 
-        SW_Light = !SW_Light;
         if (SW_Light)
         {
-            Debug.Log("ライトをつけた");
+           //Debug.Log("ライトを切った");
+            Hend_Light.SetActive(false);
             Move_Speed -= Slow_Speed;
         }
         else
         {
-           Debug.Log("ライトを切った");
+            //Debug.Log("ライトをつける");
+            Hend_Light.SetActive(true);
             Move_Speed += Slow_Speed;
-        } 
+        }
+        SW_Light = !SW_Light;
     }
 
     /// <summary>

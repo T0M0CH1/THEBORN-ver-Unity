@@ -65,7 +65,7 @@ public class Item_sys : MonoBehaviour
             img_Item_Hending.GetComponent<Image>().sprite = Item[Item_num].GetComponent<Image>().sprite;
         }
 
-        if (Input.GetKeyDown("joystick button 3") && Item_flag[Item_num])
+        if (Input.GetKeyDown("joystick button 3") && Item_flag[Item_num]) //Button_R_Y
         {
             Item_use(Item_num);
         }
@@ -146,6 +146,7 @@ public class Item_sys : MonoBehaviour
         {
             case 0:
                 StartCoroutine(CoolTime(Item_num, cool));
+                //アイテム処理追加
                 Debug.Log("use =" + Item_num);
                 break;
             case 1:
