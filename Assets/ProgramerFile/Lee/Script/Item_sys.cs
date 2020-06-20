@@ -20,6 +20,9 @@ public class Item_sys : MonoBehaviour
     [SerializeField]
     private Image img_Item_Hending; // アイテム装備中UI
 
+    [SerializeField]
+    private GameObject umb;
+
     [Header("アイテム選択中のスピード"),SerializeField, Range(0.0f, 1.0f)]
     private float Game_Speed = 1.0f;
 
@@ -147,7 +150,9 @@ public class Item_sys : MonoBehaviour
             case 0:
                 StartCoroutine(CoolTime(Item_num, cool));
                 //アイテム処理追加
+                StartCoroutine(umbrella.duration(umb));
                 Debug.Log("use =" + Item_num);
+                umbrella.Set_Item(umb, true);
                 break;
             case 1:
                 StartCoroutine(CoolTime(Item_num, cool));
