@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -28,6 +29,10 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer renderer;
     private Animator animator;
+
+    //キャラ画像
+    [SerializeField]
+    private Sprite[] playerImages;    
 
     //アニメーション（モーション）切り替える変数
     //------------------------------------------------------------------
@@ -108,7 +113,8 @@ public class Player : MonoBehaviour
     ///キャラの動く処理 
     /// </summary>
     void P_Moving()
-    {
+    {        
+        renderer.Sprite = playerImages[1];
         hori = Input.GetAxis("Horizontal");
         vert = Input.GetAxis("Vertical");
 
@@ -129,6 +135,7 @@ public class Player : MonoBehaviour
         }
 
         transform.position += Move_Velocity * Move_Speed * Time.deltaTime;
+        renderer.Sprite = playerImages[0];
     }
 
     /// <summary>
