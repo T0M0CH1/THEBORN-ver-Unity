@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -36,7 +37,8 @@ public class Player : MonoBehaviour
 
     //アニメーション（モーション）切り替える変数
     //------------------------------------------------------------------
-    private bool SW_Light = false;
+    [HideInInspector]
+    public static bool SW_Light = false;
     private bool Quest = false;
     private bool Light = false;
     private bool is_Grounding = false; //キャラの着地判定
@@ -44,8 +46,18 @@ public class Player : MonoBehaviour
                   
     private bool is_Jumping = true;
 
+    //iwasaki変数
+    [HideInInspector]
+    public static bool halfwayBool;
+    [SerializeField]
+    private GameObject halfwayPoint;
+
     void Awake()
     {
+        if (halfwayBool)
+        {
+            gameObject.transform.position = new Vector2(halfwayPoint.transform.position.x, -2.67f);
+        }
         rb = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -54,8 +66,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if(is_Grounding == false)
+        {
+            renderer.sprite = playerImages[3];
+        }
         //joystick button 0 ＝ Button_A
-        if (Input.GetKeyDown("joystick button 0") && is_Grounding) //ジャンプ
+        if (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Space) && is_Grounding) //ジャンプ
         {
             is_Jumping = true;
         }
@@ -104,6 +120,11 @@ public class Player : MonoBehaviour
         {
             is_Grounding = true;
         }
+        //iwasaki関数
+        if (collision.gameObject.tag == "Enemy")
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     //------------------------------------------------------------------
@@ -113,29 +134,29 @@ public class Player : MonoBehaviour
     ///キャラの動く処理 
     /// </summary>
     void P_Moving()
-    {        
-        renderer.Sprite = playerImages[1];
+    {
+        renderer.sprite = playerImages[5];
         hori = Input.GetAxis("Horizontal");
-        vert = Input.GetAxis("Vertical");
-
+        vert = Input.GetAxis("Vertical");        
         Move_Velocity = Vector3.zero;
 
         if (hori < 0)
         {
-            Move_Velocity = new Vector3(hori,0,0);
+            renderer.sprite = playerImages[1];
+            Move_Velocity = new Vector3(hori, 0, 0);
             transform.localScale = new Vector3(-1, 1, 1);
             //renderer.flipX = true; // renderer反転
         }
 
         else if (hori > 0)
         {
-            Move_Velocity = new Vector3(hori, 0, 0);
+            renderer.sprite = playerImages[1];
+            Move_Velocity = new Vector3(hori, 0, 0);            
             transform.localScale = new Vector3(1, 1, 1);
             //renderer.flipX = false;
         }
 
-        transform.position += Move_Velocity * Move_Speed * Time.deltaTime;
-        renderer.Sprite = playerImages[0];
+        transform.position += Move_Velocity * Move_Speed * Time.deltaTime;        
     }
 
     /// <summary>
@@ -163,12 +184,12 @@ public class Player : MonoBehaviour
     /// キャラのジャンプ処理
     /// </summary>
     void Jump ()
-    {
+    {        
         if (!is_Jumping) return;
-        rb.velocity = Vector2.zero;
-
+        rb.velocity = Vector2.zero;        
         Jump_Velocity = new Vector2(0, Jump_Power);
         rb.AddForce(Jump_Velocity, ForceMode2D.Impulse);
+        
         is_Grounding = false;
         is_Jumping = false;
     }
@@ -182,5 +203,21 @@ public class Player : MonoBehaviour
         animator.SetBool("Quest", Quest);
         animator.SetBool("Light", Light);
         animator.SetFloat("Move_Velocity", Move_Velocity.x);
+    }
+    //iwasaki関数
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "HalfwayPoint")
+        {
+            halfwayBool = true;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "HalfwayPoint" && Quest)
+        {
+            //徐々にバッテリーを回復できるようにプログラミングする予定。
+            Battery.battery += 1;
+        }
     }
 }
