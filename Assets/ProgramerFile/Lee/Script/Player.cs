@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
     /// </summary>
     void P_Moving()
     {        
-        renderer.Sprite = playerImages[1];
+        //renderer.sprite = playerImages[1];
         hori = Input.GetAxis("Horizontal");
         vert = Input.GetAxis("Vertical");
 
@@ -135,7 +135,7 @@ public class Player : MonoBehaviour
         }
 
         transform.position += Move_Velocity * Move_Speed * Time.deltaTime;
-        renderer.Sprite = playerImages[0];
+        //renderer.sprite = playerImages[0];
     }
 
     /// <summary>
@@ -183,4 +183,6 @@ public class Player : MonoBehaviour
         animator.SetBool("Light", Light);
         animator.SetFloat("Move_Velocity", Move_Velocity.x);
     }
+
+ 
 }

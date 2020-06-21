@@ -2,18 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-static public class umbrella
+public class umbrella :MonoBehaviour
 {
-   static float dur = 10.0f;  
-    
-   static public void Set_Item(GameObject obj, bool flag)
+
+    private void Start()
     {
-        obj.SetActive(flag);
+        
     }
 
-    static public IEnumerator duration(GameObject obj)
+    private void Update()
     {
-        yield return new WaitForSeconds(dur);
-        obj.SetActive(false);
+        
+    }
+
+    private void OnCollisionEnter(Collision coll)
+    {
+        if (coll.gameObject.tag == "Enermy")
+        {
+
+        }
     }
 }
