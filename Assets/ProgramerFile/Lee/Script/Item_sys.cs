@@ -30,10 +30,21 @@ public class Item_sys : MonoBehaviour
     private float cool = 5.0f; // Cool Down
 
     //-------------------------------------------------
-    [SerializeField]
+    [Header("アイテム参考リスト"),SerializeField]
     GameObject _umbrella;
+    [SerializeField]
+    GameObject _item1;
+    [SerializeField]
+    GameObject _item2;
+    [SerializeField]
+    GameObject _item3;
+    [SerializeField]
+    GameObject _item4;
+    [SerializeField]
+    GameObject _item5;
+    //-------------------------------------------------
 
-    public int Item_num; //Item 選択判定
+    private int Item_num; //Item 選択判定
     private bool[] Item_flag; //Item Cool Down 判定する変数
 
     //intput
@@ -155,8 +166,7 @@ public class Item_sys : MonoBehaviour
                 StartCoroutine(CoolTime(Item_num, cool));
                 //アイテム処理追加
                 I_active.Set_umbrella(_umbrella, true);
-                StartCoroutine(I_active.duration(_umbrella, 10.0f));
-                Debug.Log("use =" + Item_num);
+                StartCoroutine(I_active.duration(_umbrella, 5.0f));
                 break;
             case 1:
                 StartCoroutine(CoolTime(Item_num, cool));

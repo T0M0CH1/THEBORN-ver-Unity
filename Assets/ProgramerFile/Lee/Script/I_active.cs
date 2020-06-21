@@ -22,7 +22,7 @@ public static class I_active
     /// <returns></returns>
     public static IEnumerator duration(GameObject obj, float dur)
     {
-        yield return new WaitForSeconds(dur);
+        yield return new WaitForSecondsRealtime(dur);
         obj.SetActive(false);
     }
-}
+ }

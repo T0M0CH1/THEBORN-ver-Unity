@@ -32,11 +32,12 @@ public class Player : MonoBehaviour
 
     //キャラ画像
     [SerializeField]
-    private Sprite[] playerImages;    
+    private Sprite[] playerImages;
 
     //アニメーション（モーション）切り替える変数
     //------------------------------------------------------------------
-    private bool SW_Light = false;
+
+    public static bool SW_Light = false;
     private bool Quest = false;
     private bool Light = false;
     private bool is_Grounding = false; //キャラの着地判定
@@ -49,6 +50,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        StartCoroutine(Battery.duration(2.0f));
+
         //item_sys = GetComponent<Item_sys>();
     }
 
@@ -143,8 +146,8 @@ public class Player : MonoBehaviour
     /// </summary>
     void Light_ON_OFF()
     {
-
-        if (SW_Light)
+        SW_Light = !SW_Light;
+        if (!SW_Light)
         {
            //Debug.Log("ライトを切った");
             Hend_Light.SetActive(false);
@@ -155,8 +158,8 @@ public class Player : MonoBehaviour
             //Debug.Log("ライトをつける");
             Hend_Light.SetActive(true);
             Move_Speed += Slow_Speed;
+            StartCoroutine(Battery.duration(2.0f));
         }
-        SW_Light = !SW_Light;
     }
 
     /// <summary>
