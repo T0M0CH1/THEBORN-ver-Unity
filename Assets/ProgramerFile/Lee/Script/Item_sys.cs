@@ -165,7 +165,7 @@ public class Item_sys : MonoBehaviour
             case 0:
                 StartCoroutine(CoolTime(Item_num, cool));
                 //アイテム処理追加
-                I_active.Set_umbrella(_umbrella, true);
+                I_active.Set_Item(_umbrella, true);
                 StartCoroutine(I_active.duration(_umbrella, 5.0f));
                 break;
             case 1:

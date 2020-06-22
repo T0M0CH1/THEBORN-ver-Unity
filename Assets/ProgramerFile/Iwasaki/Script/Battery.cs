@@ -49,6 +49,11 @@ public class Battery : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// バッテリー持続時間
+    /// </summary>
+    /// <param name="dur">減らす時間</param>
+    /// <returns></returns>
     public static IEnumerator duration(float dur)
     {
         yield return new WaitForSeconds(dur);
@@ -57,7 +62,6 @@ public class Battery : MonoBehaviour
 
             if (Player.SW_Light == false)
             {
-                Debug.Log("tst");
                 yield break;
             }
             battery--;

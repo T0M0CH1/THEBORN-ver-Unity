@@ -9,16 +9,16 @@ public static class I_active
     /// </summary>
     /// <param name="obj"></param>
     /// <param name="flag"></param>
-    public static void Set_umbrella(GameObject obj, bool flag)
+    public static void Set_Item(GameObject obj, bool flag)
     {
         obj.SetActive(flag);
     }
 
     /// <summary>
-    /// 
+    /// アイテム持続時間
     /// </summary>
     /// <param name="obj"></param>
-    /// <param name="dur"></param>
+    /// <param name="dur">時間</param>
     /// <returns></returns>
     public static IEnumerator duration(GameObject obj, float dur)
     {
