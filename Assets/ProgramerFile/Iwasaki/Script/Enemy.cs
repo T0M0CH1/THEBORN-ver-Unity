@@ -9,25 +9,37 @@ public class Enemy : MonoBehaviour
     private Animator animator;    
     private bool onGroundBool;
     [SerializeField]
-    private Collider2D perceptionPlayer;
-    [SerializeField]
+    private Collider2D perceptionPlayer;   
     private GameObject player;
+    private bool dropBool;
     void Start()
     {
         rb2D = this.gameObject.GetComponent<Rigidbody2D>();
         animator = this.gameObject.GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        
     }
 
     // Update is called once per frame
     void Update()
-    {    
+    {
+        if (dropBool)
+        {         
+            if (Player.enemyBool == false)
+            {
+                this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x - 0.005f, this.gameObject.transform.position.y - 0.01f, -5);
+            }
+            this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 0.01f, -5);
+        }
         //虫が地面に落下したら
         if (onGroundBool)
         {
+            dropBool = false;
+            Player.enemyBool = true;
             onGroundBool = false;
             this.gameObject.SetActive(false);
             GameObject obj = (GameObject)Resources.Load("GroundEnemy");
-            GameObject instance = (GameObject)Instantiate(obj,new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0.0f),Quaternion.identity);
+            GameObject instance = (GameObject)Instantiate(obj,new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, -5f),Quaternion.identity);
         }
     }
 
@@ -37,6 +49,11 @@ public class Enemy : MonoBehaviour
         {
             animator.Play("Shrink");
             StartCoroutine(WaitTime(1.8f));
+        }
+
+        if(player.transform.Find("Umbrella").gameObject.tag == "Umbrella")
+        {
+            Player.enemyBool = false;
         }
     }         
 
@@ -52,9 +69,10 @@ public class Enemy : MonoBehaviour
         //フェイントで虫が落ちないようにする処理
         if (collision.gameObject.tag == "Player" && player.transform.localScale.x == 1)
         {            
-            rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+            this.rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+            dropBool = true;
         }
-        else
+        else if(collision.gameObject.tag == "Player" && player.transform.localScale.x == -1)
         {
             animator.SetBool("toFind", false);
         }

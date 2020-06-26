@@ -22,13 +22,13 @@ public class GroundEnemy : MonoBehaviour
         if (Player.SW_Light == false)
         {
             perceptionPlayer.x = 40;
-            groundEnemy.GetComponent<BoxCollider2D>().size = perceptionPlayer;
+            groundEnemy.GetComponent<BoxCollider2D>().size = new Vector2(perceptionPlayer.x, perceptionPlayer.y);
         }
         //ライトが消えているときの虫の索敵範囲
         if (Player.SW_Light)
         {
             perceptionPlayer.x = 20;
-            groundEnemy.GetComponent<BoxCollider2D>().size = perceptionPlayer;
+            groundEnemy.GetComponent<BoxCollider2D>().size = new Vector2(perceptionPlayer.x, perceptionPlayer.y);
         }
 
     }

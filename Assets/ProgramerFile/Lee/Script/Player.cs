@@ -44,13 +44,15 @@ public class Player : MonoBehaviour
     private bool is_Grounding = false; //キャラの着地判定
     //------------------------------------------------------------------
                   
-    private bool is_Jumping = true;
+    private bool is_Jumping;
 
     //iwasaki変数
     [HideInInspector]
     public static bool halfwayBool;
     [SerializeField]
     private GameObject halfwayPoint;
+    [HideInInspector]
+    public static bool enemyBool = true;
 
     void Awake()
     {
@@ -71,7 +73,7 @@ public class Player : MonoBehaviour
             renderer.sprite = playerImages[3];
         }
         //joystick button 0 ＝ Button_A
-        if (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Space) && is_Grounding) //ジャンプ
+        if (Input.GetKeyDown("joystick button 0") && is_Grounding || Input.GetKeyDown(KeyCode.Space) && is_Grounding) //ジャンプ
         {
             is_Jumping = true;
         }
@@ -119,9 +121,12 @@ public class Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground"))
         {
             is_Grounding = true;
-        }
+        }        
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
         //iwasaki関数
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && enemyBool)
         {
             SceneManager.LoadScene("GameOver");
         }

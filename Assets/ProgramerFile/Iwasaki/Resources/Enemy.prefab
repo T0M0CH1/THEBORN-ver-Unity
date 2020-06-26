@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997404585123174518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.206, y: 0.905, z: -3.2739258}
+  m_LocalPosition: {x: -1.206, y: 0.905, z: -5}
   m_LocalScale: {x: 0.35, y: 0.35, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -104,9 +104,9 @@ Rigidbody2D:
   m_GravityScale: 0.37
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 0
+  m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 7
 --- !u!70 &1146462110
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -116,7 +116,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 997404585123174518}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: cba63bf53cea4994792dc22d86cd5f42, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -136,7 +136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perceptionPlayer: {fileID: 1676310536}
-  player: {fileID: 0}
 --- !u!111 &1472863969
 Animation:
   m_ObjectHideFlags: 0

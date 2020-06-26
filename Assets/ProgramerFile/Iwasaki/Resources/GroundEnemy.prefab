@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8646060692881964242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1219, y: -0.59335, z: -3.7617188}
-  m_LocalScale: {x: -0.2234369, y: 0.22343694, z: 0.22343694}
+  m_LocalPosition: {x: 1.1219, y: -0.59335, z: -5}
+  m_LocalScale: {x: -0.2234369, y: 0.22343694, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1037452908000e443baa2248d44c5f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundEnemy: {fileID: 0}
+  groundEnemy: {fileID: 8646060692881964242}
 --- !u!61 &4672908889020392163
 BoxCollider2D:
   m_ObjectHideFlags: 0

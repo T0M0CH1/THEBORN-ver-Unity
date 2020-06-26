@@ -7,11 +7,11 @@ public class Title : MonoBehaviour
 {
     public void toSTART()
     {
-        Player_Iwasaki.halfwayBool = false;
-        SceneManager.LoadScene("Iwasaki");
+        Player.halfwayBool = false;
+        SceneManager.LoadScene("MainScene");
     }
     public void toCONTINUE()
     {
-        SceneManager.LoadScene("Iwasaki");
+        SceneManager.LoadScene("MainScene");
     }
 }
