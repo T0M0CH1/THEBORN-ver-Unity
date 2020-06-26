@@ -11,8 +11,13 @@ public class Battery : MonoBehaviour
     public static int battery;
     [SerializeField]
     private GameObject _battery;
+    [HideInInspector]
+    public static bool is_charging; //充電する、しない　判定
+
+
     void Start()
     {
+        is_charging = false;
         battery = 6;
     }
 
@@ -69,5 +74,28 @@ public class Battery : MonoBehaviour
             
         }
        
+    }
+
+
+    /// <summary>
+    /// Battery回復
+    /// </summary>
+    /// <param name="dur">回復時間</param>
+    /// <returns></returns>
+    public static IEnumerator charg(float dur)
+    {
+        if (is_charging == true)
+        {
+           yield break;
+        }
+        is_charging = true;
+        Debug.Log("charging");
+        while (battery < 6)
+        {
+            battery++;
+            yield return new WaitForSeconds(dur);
+        }
+        is_charging = false;
+        Debug.Log("charging exit");
     }
 }

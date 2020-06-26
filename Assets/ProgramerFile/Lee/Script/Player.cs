@@ -31,9 +31,11 @@ public class Player : MonoBehaviour
     private SpriteRenderer renderer;
     private Animator animator;
 
+    private Vector3 P_Scals;
+
     //キャラ画像
-    [SerializeField]
-    private Sprite[] playerImages;    
+    //[SerializeField]
+    //private Sprite[] playerImages;    
 
     //アニメーション（モーション）切り替える変数
     //------------------------------------------------------------------
@@ -61,20 +63,18 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-<<<<<<< HEAD
+
         StartCoroutine(Battery.duration(2.0f));
         is_Jumping = false;
+        P_Scals = transform.localScale;
 
-=======
->>>>>>> origin/Iwasaki
-        //item_sys = GetComponent<Item_sys>();
     }
 
     void Update()
     {
         if(is_Grounding == false)
         {
-            renderer.sprite = playerImages[3];
+            //renderer.sprite = playerImages[3];
         }
         //joystick button 0 ＝ Button_A
         if (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Space) && is_Grounding) //ジャンプ
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
         }
 
         //joystick button 2 ＝ Button_X
-        if (Input.GetKey("joystick button 2")) //探索
+        if (Input.GetKeyDown("joystick button 2")) //探索
         {
             Quest = true;
             //探索できるオブジェクト判定を追加必要（ray Cast）
@@ -99,14 +99,15 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyUp("joystick button 2")) //探索
         {
-            Quest = false;         
+            Quest = false;
+            Debug.Log("探索終わり");
+
         }
 
         //joystick button 3 = Button_Y
         //if (Input.GetKeyDown("joystick button 3"))
         //{
         //}
-
     }
 
     void FixedUpdate()
@@ -141,28 +142,29 @@ public class Player : MonoBehaviour
     /// </summary>
     void P_Moving()
     {
-        renderer.sprite = playerImages[5];
+        //renderer.sprite = playerImages[5];
         hori = Input.GetAxis("Horizontal");
         vert = Input.GetAxis("Vertical");        
         Move_Velocity = Vector3.zero;
 
         if (hori < 0)
         {
-            renderer.sprite = playerImages[1];
+            //renderer.sprite = playerImages[1];
             Move_Velocity = new Vector3(hori, 0, 0);
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-P_Scals.x, P_Scals.y, P_Scals.z);
             //renderer.flipX = true; // renderer反転
         }
 
         else if (hori > 0)
         {
-            renderer.sprite = playerImages[1];
+            //renderer.sprite = playerImages[1];
             Move_Velocity = new Vector3(hori, 0, 0);            
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(P_Scals.x, P_Scals.y, P_Scals.z);
             //renderer.flipX = false;
         }
 
-        transform.position += Move_Velocity * Move_Speed * Time.deltaTime;        
+        if (Battery.is_charging) return; //充電中には移動不可
+        transform.position += Move_Velocity * Move_Speed * Time.deltaTime;    
     }
 
     /// <summary>
@@ -180,6 +182,7 @@ public class Player : MonoBehaviour
         else
         {
             //Debug.Log("ライトをつける");
+            StartCoroutine(Battery.duration(2.0f));
             Hend_Light.SetActive(true);
             Move_Speed += Slow_Speed;
         }
@@ -192,6 +195,7 @@ public class Player : MonoBehaviour
     void Jump ()
     {        
         if (!is_Jumping) return;
+        if (Battery.is_charging) return; //充電中にはJump不可
         rb.velocity = Vector2.zero;        
         Jump_Velocity = new Vector2(0, Jump_Power);
         rb.AddForce(Jump_Velocity, ForceMode2D.Impulse);
@@ -222,8 +226,11 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "HalfwayPoint" && Quest)
         {
+            Debug.Log(Battery.battery);
+            //collision.GetComponent<BoxCollider2D>().enabled = false;
             //徐々にバッテリーを回復できるようにプログラミングする予定。
-            Battery.battery += 1;
+            StartCoroutine(Battery.charg(0.2f));
+            //Battery.battery += 1;
         }
     }
 }
