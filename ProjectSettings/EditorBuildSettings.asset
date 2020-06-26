@@ -4,17 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/MainScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/ProgramerFile/Iwasaki/Scene/Iwasaki.unity
-    guid: 9ec6b9b10513f9b4099c4ac831324df3
-  - enabled: 1
-    path: Assets/ProgramerFile/Iwasaki/Scene/GameOver.unity
-    guid: a08160e9faaabaf45867825b59fdc472
-  - enabled: 1
-    path: Assets/ProgramerFile/Iwasaki/Scene/Title.unity
-    guid: 7042ac44866308a4e8513b6bdef200fc
+  m_Scenes: []
   m_configObjects: {}
