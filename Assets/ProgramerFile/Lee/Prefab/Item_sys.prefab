@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1286597243222502618}
   - component: {fileID: 1286597243222502621}
-  - component: {fileID: 3792326023814258927}
   m_Layer: 0
   m_Name: Item_sys
   m_TagString: Untagged
@@ -44,37 +43,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7955a73a9754c4547a56286e10774fd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  Item_Menu: {fileID: 0}
+  player: {fileID: 2896665509762426965, guid: fbc680139a075b74bb448b36b2a4e94a, type: 3}
+  Item_Menu: {fileID: 7261744508164538714, guid: 0351a49c6a86d6e4a8196dd48fb3a286,
+    type: 3}
   Item:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4467722433968648657, guid: ab025419a112a7441bc05a61a6886f02, type: 3}
+  - {fileID: 6443382669862106493, guid: 62b3188ec96ac6a4793803c8ffa8e2cb, type: 3}
+  - {fileID: 3151591282989322823, guid: 9a6acbf8d602c4347812f255a39fd2e9, type: 3}
+  - {fileID: 6818357831774934986, guid: 4bef06b7353168a41b7c6560d7c6d535, type: 3}
+  - {fileID: 2527793025189038882, guid: 6f2374e91c5b5954e80b8493bf2a459c, type: 3}
+  - {fileID: 5196268856302524888, guid: 4548aac35686af34a9715ccddc71349a, type: 3}
   img_Skill:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  img_Item_Hending: {fileID: 0}
-  umb: {fileID: 0}
+  - {fileID: 597396173203890496, guid: 671d76eba195c2f45bab2ac0a3a4b27f, type: 3}
+  - {fileID: 6613488500255918616, guid: 359d4127069ce314db237ca105fb9dc0, type: 3}
+  - {fileID: 210819261129700854, guid: e8839f6c533b88e49852b59f8facef64, type: 3}
+  - {fileID: 4376047650900038843, guid: b6da3017149c17b4cbfffa8b7ab19616, type: 3}
+  - {fileID: 8849528220728197625, guid: 8811c1e47a573a94fa072a380478fac3, type: 3}
+  - {fileID: 3257266411713535172, guid: ec4e73f7f75f0914da2ef2f24d278a40, type: 3}
+  img_Item_Hending: {fileID: 8563126968144732989, guid: 3745f9d4325607c46add2a097a722ae1,
+    type: 3}
+  item_sys: {fileID: 1286597243222502620}
   Game_Speed: 0.347
   cool: 5
-  Item_num: 0
---- !u!114 &3792326023814258927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286597243222502620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1210f23d2022248a2160b8f33e61a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _umbrella: {fileID: 0}
+  _umbrella: {fileID: 4659769274747949258, guid: 5defce153caa3474e89eeef3c5dd5bbd,
+    type: 3}
