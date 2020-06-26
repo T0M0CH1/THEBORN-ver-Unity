@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         StartCoroutine(Battery.duration(2.0f));
+        is_Jumping = false;
 
         //item_sys = GetComponent<Item_sys>();
     }

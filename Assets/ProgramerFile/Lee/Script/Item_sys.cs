@@ -12,7 +12,7 @@ public class Item_sys : MonoBehaviour
     private GameObject Item_Menu;
 
     [SerializeField]
-    private GameObject[] Item; //Item選択画面
+    private Image[] Item; //Item選択画面
 
     [SerializeField]
     private Image[] img_Skill;// CoolDown確認UI
@@ -32,16 +32,16 @@ public class Item_sys : MonoBehaviour
     //-------------------------------------------------
     [Header("アイテム参考リスト"),SerializeField]
     GameObject _umbrella;
-    [SerializeField]
-    GameObject _item1;
-    [SerializeField]
-    GameObject _item2;
-    [SerializeField]
-    GameObject _item3;
-    [SerializeField]
-    GameObject _item4;
-    [SerializeField]
-    GameObject _item5;
+    //[SerializeField]
+    //GameObject _item1;
+    //[SerializeField]
+    //GameObject _item2;
+    //[SerializeField]
+    //GameObject _item3;
+    //[SerializeField]
+    //GameObject _item4;
+    //[SerializeField]
+    //GameObject _item5;
     //-------------------------------------------------
 
     private int Item_num; //Item 選択判定
@@ -114,43 +114,48 @@ public class Item_sys : MonoBehaviour
     {
         for (int i = 0; i < 6; i++)
         {
-            Item[i].GetComponent<Image>().color = Color.white;
+            Item[i].color = Color.white;
         }
 
-        if (degrees <= 60)
-        {
-            Item[0].GetComponent<Image>().color = Color.blue;
-            Item_num = 0;
-        }
+        //if (degrees <= 60)
+        //{
+        //    Item[0].GetComponent<Image>().color = Color.blue;
+        //    Item_num = 0;
+        //}
 
-        else if (degrees <= 120)
+        if (degrees <= 120)
         {
-            Item[1].GetComponent<Image>().color = Color.blue;
+            Item[1].color = Color.blue;
             Item_num = 1;
         }
 
         else if (degrees <= 180)
         {
-            Item[2].GetComponent<Image>().color = Color.blue;
+            Item[2].color = Color.blue;
             Item_num = 2;
         }
 
         else if (degrees <= 240)
         {
-            Item[3].GetComponent<Image>().color = Color.blue;
+            Item[3].color = Color.blue;
             Item_num = 3;
         }
 
         else if (degrees <= 300)
         {
-            Item[4].GetComponent<Image>().color = Color.blue;
+            Item[4].color = Color.blue;
             Item_num = 4;
         }
 
         else if (degrees <= 360)
         {
-            Item[5].GetComponent<Image>().color = Color.blue;
+            Item[5].color = Color.blue;
             Item_num = 5;
+        }
+
+        else
+        {
+
         }
     }
 
@@ -162,14 +167,14 @@ public class Item_sys : MonoBehaviour
     {
         switch (Item_num)
         {
-            case 0:
-                StartCoroutine(CoolTime(Item_num, cool));
-                //アイテム処理追加
-                I_active.Set_Item(_umbrella, true);
-                StartCoroutine(I_active.duration(_umbrella, 5.0f));
-                break;
+            //case 0:
+            //    StartCoroutine(CoolTime(Item_num, cool));
+            //    //アイテム処理追加
+            //    break;
             case 1:
+                I_active.Set_Item(_umbrella, true);
                 StartCoroutine(CoolTime(Item_num, cool));
+                StartCoroutine(I_active.duration(_umbrella, 5.0f));
                 Debug.Log("use =" + Item_num);
                 break;
             case 2:
