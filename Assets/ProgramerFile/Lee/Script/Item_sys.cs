@@ -20,13 +20,31 @@ public class Item_sys : MonoBehaviour
     [SerializeField]
     private Image img_Item_Hending; // アイテム装備中UI
 
+    [SerializeField]
+    private GameObject item_sys;
+
     [Header("アイテム選択中のスピード"),SerializeField, Range(0.0f, 1.0f)]
     private float Game_Speed = 1.0f;
 
     [Header("アイテム再使用時間"),SerializeField, Range(0.0f, 5.0f)]
     private float cool = 5.0f; // Cool Down
 
-    public int Item_num; //Item 選択判定
+    //-------------------------------------------------
+    [Header("アイテム参考リスト"),SerializeField]
+    GameObject _umbrella;
+    [SerializeField]
+    GameObject _item1;
+    [SerializeField]
+    GameObject _item2;
+    [SerializeField]
+    GameObject _item3;
+    [SerializeField]
+    GameObject _item4;
+    [SerializeField]
+    GameObject _item5;
+    //-------------------------------------------------
+
+    private int Item_num; //Item 選択判定
     private bool[] Item_flag; //Item Cool Down 判定する変数
 
     //intput
@@ -147,7 +165,8 @@ public class Item_sys : MonoBehaviour
             case 0:
                 StartCoroutine(CoolTime(Item_num, cool));
                 //アイテム処理追加
-                Debug.Log("use =" + Item_num);
+                I_active.Set_umbrella(_umbrella, true);
+                StartCoroutine(I_active.duration(_umbrella, 5.0f));
                 break;
             case 1:
                 StartCoroutine(CoolTime(Item_num, cool));

@@ -48,4 +48,22 @@ public class Battery : MonoBehaviour
                 break;
         }
     }
+
+    public static IEnumerator duration(float dur)
+    {
+        yield return new WaitForSeconds(dur);
+        while (true)
+        {
+
+            if (Player.SW_Light == false)
+            {
+                Debug.Log("tst");
+                yield break;
+            }
+            battery--;
+            yield return new WaitForSeconds(dur);
+            
+        }
+       
+    }
 }

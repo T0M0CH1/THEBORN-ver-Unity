@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1286597243222502618}
   - component: {fileID: 1286597243222502621}
+  - component: {fileID: 3792326023814258927}
   m_Layer: 0
   m_Name: Item_sys
   m_TagString: Untagged
@@ -60,6 +61,20 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   img_Item_Hending: {fileID: 0}
+  umb: {fileID: 0}
   Game_Speed: 0.347
   cool: 5
   Item_num: 0
+--- !u!114 &3792326023814258927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286597243222502620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1210f23d2022248a2160b8f33e61a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _umbrella: {fileID: 0}
