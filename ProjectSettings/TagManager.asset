@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - HalfwayPoint
   - Umbrella
+  - Goal
   layers:
   - Default
   - TransparentFX

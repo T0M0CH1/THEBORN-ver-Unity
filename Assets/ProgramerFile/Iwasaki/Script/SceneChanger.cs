@@ -14,9 +14,9 @@ public class SceneChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (SceneManager.GetActiveScene().name == "Result" && Input.GetKeyDown("joystick button 7"))
         {
-            SceneManager.LoadScene("Title");
+            SceneManager.LoadScene("MainScene");
         }
     }
 }

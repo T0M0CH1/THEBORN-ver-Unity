@@ -34,8 +34,8 @@ public class Player : MonoBehaviour
     private Vector3 P_Scals;
 
     //キャラ画像
-    //[SerializeField]
-    //private Sprite[] playerImages;    
+    [SerializeField]
+    private Sprite[] playerImages;
 
     //アニメーション（モーション）切り替える変数
     //------------------------------------------------------------------
@@ -55,6 +55,12 @@ public class Player : MonoBehaviour
     private GameObject halfwayPoint;
     [HideInInspector]
     public static bool enemyBool = true;
+    [SerializeField]
+    private float chargeSeconds = 1.0f;
+    [SerializeField]
+    private float lightSeconds = 1.0f;
+    [HideInInspector]
+    public static float durationTimes;
 
     void Awake()
     {
@@ -76,8 +82,12 @@ public class Player : MonoBehaviour
     {
         if(is_Grounding == false)
         {
-            //renderer.sprite = playerImages[3];
+            renderer.sprite = playerImages[3];
         }
+        //if ()
+        //{
+        //    renderer.sprite = playerImages[4];
+        //}
         //joystick button 0 ＝ Button_A
         if (Input.GetKeyDown("joystick button 0") && is_Grounding || Input.GetKeyDown(KeyCode.Space) && is_Grounding) //ジャンプ
         {
@@ -137,7 +147,7 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
         }
-    }
+    }    
 
     //------------------------------------------------------------------
     //------------------------------------------------------------------
@@ -147,14 +157,14 @@ public class Player : MonoBehaviour
     /// </summary>
     void P_Moving()
     {
-        //renderer.sprite = playerImages[5];
+        renderer.sprite = playerImages[5];
         hori = Input.GetAxis("Horizontal");
         vert = Input.GetAxis("Vertical");        
         Move_Velocity = Vector3.zero;
 
         if (hori < 0)
         {
-            //renderer.sprite = playerImages[1];
+            renderer.sprite = playerImages[1];
             Move_Velocity = new Vector3(hori, 0, 0);
             transform.localScale = new Vector3(-P_Scals.x, P_Scals.y, P_Scals.z);
             //renderer.flipX = true; // renderer反転
@@ -162,7 +172,7 @@ public class Player : MonoBehaviour
 
         else if (hori > 0)
         {
-            //renderer.sprite = playerImages[1];
+            renderer.sprite = playerImages[1];
             Move_Velocity = new Vector3(hori, 0, 0);            
             transform.localScale = new Vector3(P_Scals.x, P_Scals.y, P_Scals.z);
             //renderer.flipX = false;
@@ -187,7 +197,7 @@ public class Player : MonoBehaviour
         else
         {
             //Debug.Log("ライトをつける");
-            StartCoroutine(Battery.duration(2.0f));
+            StartCoroutine(Battery.duration(lightSeconds));
             Hend_Light.SetActive(true);
             Move_Speed += Slow_Speed;
         }
@@ -226,15 +236,21 @@ public class Player : MonoBehaviour
         {
             halfwayBool = true;
         }
+
+        if (collision.gameObject.tag == "Goal")
+        {
+            SceneManager.LoadScene("Result");
+        }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "HalfwayPoint" && Quest)
         {
-            Debug.Log(Battery.battery);
+            //Debug.Log(Battery.battery);
             //collision.GetComponent<BoxCollider2D>().enabled = false;
             //徐々にバッテリーを回復できるようにプログラミングする予定。
-            StartCoroutine(Battery.charg(0.2f));
+            renderer.sprite = playerImages[4];
+            StartCoroutine(Battery.charg(chargeSeconds));
             //Battery.battery += 1;
         }
     }

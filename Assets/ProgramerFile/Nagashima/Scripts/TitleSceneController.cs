@@ -22,6 +22,13 @@ public class TitleSceneController : MonoBehaviour
 
     public void Buttonclicked()
     {
+        Player.halfwayBool = false;
         SceneManager.LoadScene("Movie");
+    }
+    //iwasaki追加
+
+    public void Continue()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }
