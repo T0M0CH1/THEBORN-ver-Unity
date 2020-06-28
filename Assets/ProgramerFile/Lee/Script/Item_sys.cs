@@ -15,6 +15,9 @@ public class Item_sys : MonoBehaviour
     private Image[] Item; //Item選択画面
 
     [SerializeField]
+    private Image[] Item_icon; //Item_Icon(Image)
+
+    [SerializeField]
     private Image[] img_Skill;// CoolDown確認UI
 
     [SerializeField]
@@ -80,7 +83,7 @@ public class Item_sys : MonoBehaviour
         {
             Item_Menu.SetActive(false);
             Time.timeScale = 1; //普通のスピード
-            img_Item_Hending.GetComponent<Image>().sprite = Item[Item_num].GetComponent<Image>().sprite;
+            img_Item_Hending.GetComponent<Image>().sprite = Item_icon[Item_num].GetComponent<Image>().sprite;
         }
 
         if (Input.GetKeyDown("joystick button 3") && Item_flag[Item_num]) //Button_R_Y
@@ -125,31 +128,31 @@ public class Item_sys : MonoBehaviour
 
         if (degrees <= 120)
         {
-            Item[1].color = Color.blue;
+            Item[1].color = Color.gray;
             Item_num = 1;
         }
 
         else if (degrees <= 180)
         {
-            Item[2].color = Color.blue;
+            Item[2].color = Color.gray;
             Item_num = 2;
         }
 
         else if (degrees <= 240)
         {
-            Item[3].color = Color.blue;
+            Item[3].color = Color.gray;
             Item_num = 3;
         }
 
         else if (degrees <= 300)
         {
-            Item[4].color = Color.blue;
+            Item[4].color = Color.gray;
             Item_num = 4;
         }
 
         else if (degrees <= 360)
         {
-            Item[5].color = Color.blue;
+            Item[5].color = Color.gray;
             Item_num = 5;
         }
 
