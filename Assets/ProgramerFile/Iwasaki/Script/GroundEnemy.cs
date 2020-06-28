@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GroundEnemy : MonoBehaviour
 {
@@ -20,13 +21,13 @@ public class GroundEnemy : MonoBehaviour
     {
         //ライトが点いているときの虫の索敵範囲
         if (Player.SW_Light == false)
-        {
+        {            
             perceptionPlayer.x = 40;
             groundEnemy.GetComponent<BoxCollider2D>().size = new Vector2(perceptionPlayer.x, perceptionPlayer.y);
         }
         //ライトが消えているときの虫の索敵範囲
         if (Player.SW_Light)
-        {
+        {            
             perceptionPlayer.x = 20;
             groundEnemy.GetComponent<BoxCollider2D>().size = new Vector2(perceptionPlayer.x, perceptionPlayer.y);
         }

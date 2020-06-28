@@ -19,6 +19,7 @@ public class Option2Title : MonoBehaviour
     }
     public void Buttonclicked()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Title");
     }
 }

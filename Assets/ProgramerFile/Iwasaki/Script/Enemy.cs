@@ -23,6 +23,14 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (Input.GetKeyDown(KeyCode.O) && player.transform.Find("Umbrella").gameObject.activeSelf == false)
+        //{
+        //    Debug.Log("sasitenai");
+        //}
+        //else if (Input.GetKeyDown(KeyCode.P) && player.transform.Find("Umbrella").gameObject.activeSelf == true)
+        //{
+        //    Debug.Log("sasitenru");
+        //}
         if (dropBool)
         {         
             if (Player.enemyBool == false)
@@ -51,7 +59,7 @@ public class Enemy : MonoBehaviour
             StartCoroutine(WaitTime(1.8f));
         }
 
-        if(player.transform.Find("Umbrella").gameObject.tag == "Umbrella")
+        if(player.transform.Find("Umbrella").gameObject.activeSelf == true)
         {
             Player.enemyBool = false;
         }
@@ -85,4 +93,6 @@ public class Enemy : MonoBehaviour
         onGroundBool = true;
         yield break;
     }
+
+    
 }

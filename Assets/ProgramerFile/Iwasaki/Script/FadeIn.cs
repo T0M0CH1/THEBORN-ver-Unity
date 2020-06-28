@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-public class SceneChanger : MonoBehaviour
+public class FadeIn : MonoBehaviour
 {
     private GameObject fadeCanvas;
+    [SerializeField]
+    private GameObject player;
+    private Rigidbody2D rb2d;
+
     void Start()
     {
+        rb2d = player.GetComponent<Rigidbody2D>();
+        rb2d.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
         //フェード用のキャンバス作成
         fadeCanvas = new GameObject("FadeCanvas");
         fadeCanvas.transform.SetParent(transform);
@@ -17,36 +22,31 @@ public class SceneChanger : MonoBehaviour
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.sortingOrder = 999;
         fadeCanvas.AddComponent<CanvasGroup>();
-        fadeCanvas.GetComponent<CanvasGroup>().alpha = 0;
+        fadeCanvas.GetComponent<CanvasGroup>().alpha = 1;
 
         //フェード用の画像作成
         GameObject imageObject = new GameObject("Image");
         imageObject.transform.SetParent(fadeCanvas.transform, false);
         imageObject.AddComponent<Image>().color = Color.black;
-        imageObject.GetComponent<RectTransform>().sizeDelta = new Vector2(2000, 2000);
+        imageObject.GetComponent<RectTransform>().sizeDelta = new Vector2(2000, 1200);
+        StartCoroutine(inFade(3.0f));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Result" && Input.GetKeyDown("joystick button 7") || 
-            SceneManager.GetActiveScene().name == "Result" && Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(FadeOut(2.0f));
-        }
+        
     }
-
-    IEnumerator FadeOut(float fadeTime)
+    IEnumerator inFade(float fadeTime)
     {
         float time = 0f;
-        while (fadeCanvas.GetComponent<CanvasGroup>().alpha < 1)
+        while (fadeCanvas.GetComponent<CanvasGroup>().alpha > 0)
         {
-            fadeCanvas.GetComponent<CanvasGroup>().alpha = 1f * (time / fadeTime);
+            fadeCanvas.GetComponent<CanvasGroup>().alpha = 1 - (time / fadeTime);
             time += Time.deltaTime;
             yield return null;
         }
-        Player.halfwayBool = false;
-        SceneManager.LoadScene("MainScene");
+        rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
         yield break;
     }
 }

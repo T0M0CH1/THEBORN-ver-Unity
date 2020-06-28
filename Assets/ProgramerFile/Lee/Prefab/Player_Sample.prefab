@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334bc9f61b02ce04db5966df8c74ee90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Move_Speed: 4.06
+  Move_Speed: 1.67
   Slow_Speed: 5
   Jump_Power: 7.61
   Hend_Light: {fileID: 2628089568682646147}
@@ -202,6 +202,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3bb2fa9e8d3c6ee449b5c4c660ce18bf, type: 3}
   - {fileID: 21300000, guid: 51df1c839b9fcc34f9bd848649e16711, type: 3}
   halfwayPoint: {fileID: 0}
+  chargeSeconds: 3
+  lightSeconds: 10
 --- !u!95 &2896665511322319122
 Animator:
   serializedVersion: 3
@@ -317,15 +319,14 @@ GameObject:
   m_Component:
   - component: {fileID: 6237842123001068182}
   - component: {fileID: 2742362842426420828}
-  - component: {fileID: 4072193355686040965}
   - component: {fileID: 590756758}
   m_Layer: 0
   m_Name: Umbrella
-  m_TagString: Untagged
+  m_TagString: Umbrella
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6237842123001068182
 Transform:
   m_ObjectHideFlags: 0
@@ -335,7 +336,7 @@ Transform:
   m_GameObject: {fileID: 8262660866877355152}
   m_LocalRotation: {x: 0, y: 0, z: 0.12940131, w: 0.99159235}
   m_LocalPosition: {x: 0.04, y: 1.91, z: -0}
-  m_LocalScale: {x: 2.5, y: 1.36, z: 0}
+  m_LocalScale: {x: 2.67, y: 1.66, z: 0}
   m_Children: []
   m_Father: {fileID: 2896665511322319126}
   m_RootOrder: 2
@@ -377,7 +378,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 91698fd60e8d4d24a91ea1573559f2ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -389,18 +390,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4072193355686040965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8262660866877355152}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d08cef8964ed26e408ae55748fde3bed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!68 &590756758
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -414,10 +403,10 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.03}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.5, y: 0.23}
-  - {x: 0.49, y: -0.24}
-  - {x: 0.07, y: 0.49}
-  - {x: -0.5, y: 0.23}
+  - {x: -0.42, y: 0.11}
+  - {x: 0.4, y: -0.24}
+  - {x: 0.07, y: 0.5}
+  - {x: -0.42, y: 0.11}

@@ -43,7 +43,8 @@ public class Player : MonoBehaviour
     public static bool SW_Light = false;
     private bool Quest = false;
     private bool Light = false;
-    private bool is_Grounding = false; //キャラの着地判定
+    [HideInInspector]
+    public static bool is_Grounding = false; //キャラの着地判定
     //------------------------------------------------------------------
                   
     private bool is_Jumping;
@@ -95,7 +96,7 @@ public class Player : MonoBehaviour
         }
 
         //joystick button 0 ＝ Button_B
-        if (Input.GetKeyDown("joystick button 1")) //ライト
+        if (Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Q)) //ライト
         {
             //SW_Light = !SW_Light;
             Light_ON_OFF();
@@ -115,11 +116,6 @@ public class Player : MonoBehaviour
             Debug.Log("探索終わり");
 
         }
-
-        //joystick button 3 = Button_Y
-        //if (Input.GetKeyDown("joystick button 3"))
-        //{
-        //}
     }
 
     void FixedUpdate()
