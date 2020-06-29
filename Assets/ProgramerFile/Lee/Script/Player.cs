@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
-        StartCoroutine(Battery.duration(2.0f));
+        //StartCoroutine(Battery.duration(2.0f));
         is_Jumping = false;
         P_Scals = transform.localScale;
 
@@ -182,7 +182,7 @@ public class Player : MonoBehaviour
         else
         {
             //Debug.Log("ライトをつける");
-            StartCoroutine(Battery.duration(2.0f));
+            StartCoroutine(Battery.decrease(Battery.decrease_speed)); //Battery.decrease_speed　= battery減らす。スピード
             Hend_Light.SetActive(true);
             Move_Speed += Slow_Speed;
         }

@@ -13,6 +13,9 @@ public class Battery : MonoBehaviour
     private GameObject _battery;
     [HideInInspector]
     public static bool is_charging; //充電する、しない　判定
+    [SerializeField]
+    public static float decrease_speed = 0.5f; // Battery減らす。speed
+
 
 
     void Start()
@@ -59,7 +62,7 @@ public class Battery : MonoBehaviour
     /// </summary>
     /// <param name="dur">減らす時間</param>
     /// <returns></returns>
-    public static IEnumerator duration(float dur)
+    public static IEnumerator decrease(float dur)
     {
         yield return new WaitForSeconds(dur);
         while (true)
