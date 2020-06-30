@@ -34,7 +34,7 @@ public class Item_sys : MonoBehaviour
 
     //-------------------------------------------------
     [Header("アイテム参考リスト"),SerializeField]
-    GameObject _umbrella;
+    private GameObject _umbrella;
     //[SerializeField]
     //GameObject _item1;
     //[SerializeField]
