@@ -62,6 +62,8 @@ public class Player : MonoBehaviour
     private float lightSeconds = 1.0f;
     [HideInInspector]
     public static float durationTimes;
+    [HideInInspector]
+    public static bool catchForm;
 
     void Awake()
     {
@@ -85,10 +87,11 @@ public class Player : MonoBehaviour
         {
             renderer.sprite = playerImages[3];
         }
-        //if ()
-        //{
-        //    renderer.sprite = playerImages[4];
-        //}
+
+        if (catchForm && Battery.battery < 8)
+        {
+            renderer.sprite = playerImages[4];
+        }
         //joystick button 0 ＝ Button_A
         if (Input.GetKeyDown("joystick button 0") && is_Grounding || Input.GetKeyDown(KeyCode.Space) && is_Grounding) //ジャンプ
         {
@@ -103,15 +106,17 @@ public class Player : MonoBehaviour
         }
 
         //joystick button 2 ＝ Button_X
-        if (Input.GetKeyDown("joystick button 2")) //探索
+        if (Input.GetKeyDown("joystick button 2") || Input.GetKeyDown(KeyCode.U)) //探索
         {
             Quest = true;
             //探索できるオブジェクト判定を追加必要（ray Cast）
             Debug.Log("探索している");
         }
 
-        if (Input.GetKeyUp("joystick button 2")) //探索
+        if (Input.GetKeyUp("joystick button 2") || Input.GetKeyUp(KeyCode.U)) //探索
         {
+            //離したらキャッチの動作をやめる
+            //catchForm = false;
             Quest = false;
             Debug.Log("探索終わり");
 
@@ -242,12 +247,8 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "HalfwayPoint" && Quest)
         {
-            //Debug.Log(Battery.battery);
-            //collision.GetComponent<BoxCollider2D>().enabled = false;
-            //徐々にバッテリーを回復できるようにプログラミングする予定。
-            renderer.sprite = playerImages[4];
-            StartCoroutine(Battery.charg(chargeSeconds));
-            //Battery.battery += 1;
+            catchForm = true;
+            StartCoroutine(Battery.charg(chargeSeconds));            
         }
     }
 }

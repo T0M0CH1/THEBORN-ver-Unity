@@ -129,6 +129,7 @@ public class Battery : MonoBehaviour
             yield return new WaitForSeconds(dur);
         }
         is_charging = false;
+        Player.catchForm = false;
         Debug.Log("charging exit");
     }
 
