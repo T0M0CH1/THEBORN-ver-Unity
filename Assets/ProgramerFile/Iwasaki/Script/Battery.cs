@@ -20,6 +20,9 @@ public class Battery : MonoBehaviour
     private bool flashBool;
     [SerializeField]
     private float flashSpeed;
+    private bool doOnce = true;
+    [SerializeField]
+    private GameObject chargeImage;
 
 
 
@@ -33,7 +36,22 @@ public class Battery : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //充電中はバッテリーが充電中の画像に挿し変わる
+        if (Player.catchForm && doOnce)
+        {
+            doOnce = false;
+            chargeImage.SetActive(true);
+        }
+        else if(Player.catchForm == false && doOnce == false)
+        {
+            doOnce = true;
+            chargeImage.SetActive(false);
+        }
+
+        //点滅パターンの作成
         alpha_Sin = Mathf.Sin(Time.time * flashSpeed) / 2 + 0.5f;
+
+        //ライトを消しているときバッテリーが灰色になる
         if (Player.SW_Light == false)
         {
             flashBool = false;
@@ -46,6 +64,7 @@ public class Battery : MonoBehaviour
             _battery.GetComponent<Image>().material = null;
         }
 
+        //バッテリー残量に応じての処理
         switch (battery)
         {
             case 0:
@@ -124,12 +143,12 @@ public class Battery : MonoBehaviour
         is_charging = true;
         Debug.Log("charging");
         while (battery < 7)
-        {
+        {            
             battery++;
             yield return new WaitForSeconds(dur);
         }
         is_charging = false;
-        Player.catchForm = false;
+        Player.catchForm = false;        
         Debug.Log("charging exit");
     }
 
