@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     private float Slow_Speed = 5.0f;
 
     [SerializeField, Range(0.0f, 10.0f)]
+    private float Nomal_Speed = 10.0f;
+
+    [SerializeField, Range(0.0f, 10.0f)]
     private float Jump_Power = 5.0f; //ジャンプ＿力
 
     [SerializeField]
@@ -193,14 +196,14 @@ public class Player : MonoBehaviour
         {
            //Debug.Log("ライトを切った");
             Hend_Light.SetActive(false);
-            Move_Speed -= Slow_Speed;
+            Move_Speed = Slow_Speed;
         }
         else
         {
             //Debug.Log("ライトをつける");
             StartCoroutine(Battery.duration(lightSeconds));
             Hend_Light.SetActive(true);
-            Move_Speed += Slow_Speed;
+            Move_Speed = Nomal_Speed;
         }
         SW_Light = !SW_Light;
     }
