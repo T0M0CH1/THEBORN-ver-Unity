@@ -15,6 +15,10 @@ public class Item_sys : MonoBehaviour
     private Image[] Item; //Item選択画面
 
     [SerializeField]
+    private Image Item_img; 
+
+    //---------------------------------------------------
+    [SerializeField]
     private Image[] Item_icon; //Item_Icon(Image)
 
     [SerializeField]
@@ -22,6 +26,7 @@ public class Item_sys : MonoBehaviour
 
     [SerializeField]
     private Image img_Item_Hending; // アイテム装備中UI
+    //---------------------------------------------------
 
     [SerializeField]
     private GameObject item_sys;
@@ -76,7 +81,8 @@ public class Item_sys : MonoBehaviour
             {
                 Item_Select(GetAngle(Rsh, Rsv));
             }
-           
+
+            Item_img.sprite = Item_icon[Item_num].sprite;
         }
 
         if (Input.GetKeyUp("joystick button 5")) //Button_R_B
@@ -115,51 +121,41 @@ public class Item_sys : MonoBehaviour
     /// <param name="degrees">角度入力</param>
     private void Item_Select(float degrees)
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 5; i++)
         {
             Item[i].color = Color.white;
         }
 
-        //if (degrees <= 60)
-        //{
-        //    Item[0].GetComponent<Image>().color = Color.blue;
-        //    Item_num = 0;
-        //}
+        if (degrees <= 90)
+        {
+            Item[0].color = Color.gray;
+            Item_num = 0;
+        }
 
-        if (degrees <= 120)
+        else if (degrees <= 180)
         {
             Item[1].color = Color.gray;
             Item_num = 1;
         }
 
-        else if (degrees <= 180)
+        else if (degrees <= 240)
         {
             Item[2].color = Color.gray;
             Item_num = 2;
         }
 
-        else if (degrees <= 240)
+        else if (degrees <= 300)
         {
             Item[3].color = Color.gray;
             Item_num = 3;
         }
 
-        else if (degrees <= 300)
+        else if (degrees <= 360)
         {
             Item[4].color = Color.gray;
             Item_num = 4;
         }
 
-        else if (degrees <= 360)
-        {
-            Item[5].color = Color.gray;
-            Item_num = 5;
-        }
-
-        else
-        {
-
-        }
     }
 
     /// <summary>
