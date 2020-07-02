@@ -15,7 +15,11 @@ public class OptionSceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (Input.GetKeyDown("joystick button 0"))
+        {
+            SceneManager.LoadScene("Title");
+        }
     }
 
     public void Buttonclicked()

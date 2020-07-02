@@ -16,6 +16,8 @@ public class Manger_Title : MonoBehaviour
 
     private float Menu_Move_X;
     private float Menu_Move_Y;
+    private float temp;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,20 +42,22 @@ public class Manger_Title : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Menu_Move_X = Input.GetAxis("D_Pad_H");
+        //Menu_Move_X = Input.GetAxis("D_Pad_H");
         Menu_Move_Y = Input.GetAxis("D_Pad_V"); ;
+       
 
-        if (Menu_Move_Y == 1 && Menu_Num > 0)
+        if (Menu_Move_Y == 1 && Menu_Num > 0 && temp == 0)
         {
             Rest_Color();
             Menu_Num--;
         }
 
-        else if (Menu_Move_Y == -1 && Menu_Num < Menu_Size - 1)
+        else if (Menu_Move_Y == -1 && Menu_Num < Menu_Size - 1 && temp == 0)
         {
             Rest_Color();
             Menu_Num++;
         }
+        temp = Menu_Move_Y;
         Debug.Log(Menu_Num);
     }
     //================================================
