@@ -189,7 +189,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 78387168d08be4d429d417156b5d7981, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -251,8 +251,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontCollider: {fileID: 4672908889020392163}
   behindCollider: {fileID: 2717521073471080722}
-  OFF_Perception: 10
-  ON_Perception: 15
+  OFF_Perception: 5
+  ON_Perception: 10
 --- !u!61 &4672908889020392163
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -292,7 +292,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 16.3, y: -1.56}
+  m_Offset: {x: 9.5, y: -1.56}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -303,5 +303,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 14.3, y: 3.57}
+  m_Size: {x: 1, y: 3.57}
   m_EdgeRadius: 0

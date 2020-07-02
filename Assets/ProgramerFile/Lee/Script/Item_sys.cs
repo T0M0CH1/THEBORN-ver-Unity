@@ -32,6 +32,9 @@ public class Item_sys : MonoBehaviour
     [Header("アイテム再使用時間"),SerializeField, Range(0.0f, 5.0f)]
     private float cool = 5.0f; // Cool Down
 
+    [SerializeField]
+    private Image centeIcon;
+
     //-------------------------------------------------
     [Header("アイテム参考リスト"),SerializeField]
     private GameObject _umbrella;
@@ -64,6 +67,24 @@ public class Item_sys : MonoBehaviour
 
     void Update()
     {
+        switch (Item_num)
+        {
+            case 1:
+                centeIcon.GetComponent<Image>().sprite = Item_icon[Item_num].GetComponent<Image>().sprite;
+                break;
+            case 2:
+                centeIcon.GetComponent<Image>().sprite = Item_icon[Item_num].GetComponent<Image>().sprite;
+                break;
+            case 3:
+                centeIcon.GetComponent<Image>().sprite = Item_icon[Item_num].GetComponent<Image>().sprite;
+                break;
+            case 4:
+                centeIcon.GetComponent<Image>().sprite = Item_icon[Item_num].GetComponent<Image>().sprite;
+                break;
+            case 5:
+                centeIcon.GetComponent<Image>().sprite = Item_icon[Item_num].GetComponent<Image>().sprite;
+                break;
+        }
         Rsh = Input.GetAxis("R_Stick_H"); // Game_Pad 右スティックの右左を取得
         Rsv = Input.GetAxis("R_Stick_V"); // Game_Pad 右スティックの上下を取得
 

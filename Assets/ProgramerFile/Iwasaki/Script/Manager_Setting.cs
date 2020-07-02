@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-public class Manger_Title : MonoBehaviour
+
+public class Manager_Setting : MonoBehaviour
 {
 
     [SerializeField]
@@ -43,16 +44,16 @@ public class Manger_Title : MonoBehaviour
         Menu_Move_X = Input.GetAxis("D_Pad_H");
         Menu_Move_Y = Input.GetAxis("D_Pad_V"); ;
 
-        if (Menu_Move_Y == 1 && Menu_Num > 0)
-        {
-            Rest_Color();
-            Menu_Num--;
-        }
-
-        else if (Menu_Move_Y == -1 && Menu_Num < Menu_Size - 1)
+        if (Menu_Move_X == 1 && Menu_Num < Menu_Size - 1)
         {
             Rest_Color();
             Menu_Num++;
+        }
+
+        else if (Menu_Move_X == -1 && Menu_Num > 0)
+        {
+            Rest_Color();
+            Menu_Num--;
         }
         Debug.Log(Menu_Num);
     }
@@ -71,16 +72,12 @@ public class Manger_Title : MonoBehaviour
         switch (Menu_Num)
         {
             case 0:
-                Player.halfwayBool = false;
-                SceneManager.LoadScene("Movie");
+                Time.timeScale = 1;
+                SceneManager.LoadScene("Title");
                 break;
 
             case 1:
-                SceneManager.LoadScene("MainScene");
-                break;
-
-            case 2:
-                SceneManager.LoadScene("Option");
+                //optionが入る。
                 break;
         }
     }

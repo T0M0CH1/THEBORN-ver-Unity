@@ -37,7 +37,8 @@ public class Enemy : MonoBehaviour
             {
                 this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x - 0.005f, this.gameObject.transform.position.y - 0.01f, -5);
             }
-            this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 0.01f, -5);
+            //this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 0.01f, -5);
+            this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y - 0.001f, -5);
         }
         //虫が地面に落下したら
         if (onGroundBool)

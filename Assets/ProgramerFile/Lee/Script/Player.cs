@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
     {
         if (halfwayBool)
         {
-            gameObject.transform.position = new Vector2(halfwayPoint.transform.position.x, -2.67f);
+            gameObject.transform.position = new Vector2(halfwayPoint.transform.position.x, -3.44f);
         }
         rb = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
         StartCoroutine(Battery.duration(2.0f));
         is_Jumping = false;
         P_Scals = transform.localScale;
-
+        SW_Light = false;
     }
 
     void Update()

@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GroundEnemy : MonoBehaviour
 {
-    private GameObject player;   
-    
+    private GameObject player;
+    [SerializeField]
+    private float EnemySpeed = 1;
+
+
     private Vector2 perceptionFront;
     private Vector2 perceptionBehind;
     private Vector2 frontPos;
@@ -70,7 +73,7 @@ public class GroundEnemy : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             //プレイヤーを追いかける処理
-            this.transform.position = Vector3.MoveTowards(transform.position, new Vector2(player.transform.position.x, -2.8f), Time.deltaTime);
+            this.transform.position = Vector3.MoveTowards(transform.position, new Vector2(player.transform.position.x, -4.38f), Time.deltaTime * EnemySpeed);
             //左右反転処理
             if (this.transform.position.x < player.transform.position.x)
             {
