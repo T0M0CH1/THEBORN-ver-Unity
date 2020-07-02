@@ -72,24 +72,24 @@ public class Item_sys : MonoBehaviour
 
     void Update()
     {
-        switch (Item_num)
-        {
-            case 1:
-                centeIcon.GetComponent<Image>().sprite = Item_icon[Item_num].GetComponent<Image>().sprite;
-                break;
-            case 2:
-                centeIcon.GetComponent<Image>().sprite = Item_icon[Item_num].GetComponent<Image>().sprite;
-                break;
-            case 3:
-                centeIcon.GetComponent<Image>().sprite = Item_icon[Item_num].GetComponent<Image>().sprite;
-                break;
-            case 4:
-                centeIcon.GetComponent<Image>().sprite = Item_icon[Item_num].GetComponent<Image>().sprite;
-                break;
-            case 5:
-                centeIcon.GetComponent<Image>().sprite = Item_icon[Item_num].GetComponent<Image>().sprite;
-                break;
-        }
+        //switch (Item_num)
+        //{
+        //    case 1:
+        //        centeIcon.GetComponent<Image>().sprite = Item_icon[Item_num].GetComponent<Image>().sprite;
+        //        break;
+        //    case 2:
+        //        centeIcon.GetComponent<Image>().sprite = Item_icon[Item_num].GetComponent<Image>().sprite;
+        //        break;
+        //    case 3:
+        //        centeIcon.GetComponent<Image>().sprite = Item_icon[Item_num].GetComponent<Image>().sprite;
+        //        break;
+        //    case 4:
+        //        centeIcon.GetComponent<Image>().sprite = Item_icon[Item_num].GetComponent<Image>().sprite;
+        //        break;
+        //    case 5:
+        //        centeIcon.GetComponent<Image>().sprite = Item_icon[Item_num].GetComponent<Image>().sprite;
+        //        break;
+        //}
         Rsh = Input.GetAxis("R_Stick_H"); // Game_Pad 右スティックの右左を取得
         Rsv = Input.GetAxis("R_Stick_V"); // Game_Pad 右スティックの上下を取得
 
@@ -191,11 +191,15 @@ public class Item_sys : MonoBehaviour
             //    StartCoroutine(CoolTime(Item_num, cool));
             //    //アイテム処理追加
             //    break;
-            case 1:
+            case 0:
                 Debug.Log("ssss");
                 I_active.Set_Item(_umbrella, true);
                 StartCoroutine(CoolTime(Item_num, cool));
                 StartCoroutine(I_active.duration(_umbrella, 5.0f));
+                Debug.Log("use =" + Item_num);
+                break;
+            case 1:
+                StartCoroutine(CoolTime(Item_num, cool));
                 Debug.Log("use =" + Item_num);
                 break;
             case 2:
@@ -207,10 +211,6 @@ public class Item_sys : MonoBehaviour
                 Debug.Log("use =" + Item_num);
                 break;
             case 4:
-                StartCoroutine(CoolTime(Item_num, cool));
-                Debug.Log("use =" + Item_num);
-                break;
-            case 5:
                 StartCoroutine(CoolTime(Item_num, cool));
                 Debug.Log("use =" + Item_num);
                 break;
