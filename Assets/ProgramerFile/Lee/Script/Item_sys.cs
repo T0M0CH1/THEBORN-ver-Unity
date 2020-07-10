@@ -196,8 +196,15 @@ public class Item_sys : MonoBehaviour
                 Debug.Log("use =" + Item_num);
                 break;
             case 1:
-                StartCoroutine(CoolTime(Item_num, cool));
-                Debug.Log("use =" + Item_num);
+                if (Player.useable_Hanky)
+                {
+                    StartCoroutine(CoolTime(Item_num, cool));
+                    Boss.call = true;
+                }
+                    
+                //------
+                //else
+                //------
                 break;
             case 2:
                 StartCoroutine(CoolTime(Item_num, cool));

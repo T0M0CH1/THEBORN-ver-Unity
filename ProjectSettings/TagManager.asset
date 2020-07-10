@@ -10,6 +10,9 @@ TagManager:
   - Umbrella
   - Goal
   - GroundEnemy
+  - Boss
+  - Mirror
+  - Light
   layers:
   - Default
   - TransparentFX

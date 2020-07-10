@@ -44,12 +44,18 @@ public class Player : MonoBehaviour
     //------------------------------------------------------------------
     [HideInInspector]
     public static bool SW_Light = false;
+
     private bool Quest = false;
     private bool Light = false;
+
     [HideInInspector]
     public static bool is_Grounding = false; //キャラの着地判定
+    [HideInInspector]
+    public static bool useable_Hanky; // ハンカチ使用可能変数
+    [HideInInspector]
+    public static GameObject mirror_obj;
     //------------------------------------------------------------------
-                  
+
     private bool is_Jumping;
 
     //iwasaki変数
@@ -137,12 +143,14 @@ public class Player : MonoBehaviour
         initAnimator();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Ground"))
         {
             is_Grounding = true;
-        }        
+        }
+
+        
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -151,7 +159,7 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
         }
-    }    
+    }
 
     //------------------------------------------------------------------
     //------------------------------------------------------------------
@@ -245,6 +253,7 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene("Result");
         }
+       
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -252,6 +261,20 @@ public class Player : MonoBehaviour
         {
             catchForm = true;
             StartCoroutine(Battery.charg(chargeSeconds));            
+        }
+
+        if (collision.gameObject.tag == "Mirror")
+        {
+            useable_Hanky = true;
+            mirror_obj = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Mirror")
+        {
+            useable_Hanky = false;
         }
     }
 }
