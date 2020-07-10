@@ -142,7 +142,7 @@ public class Item_sys : MonoBehaviour
     /// <param name="degrees">角度入力</param>
     private void Item_Select(float degrees)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < Item.Length; i++)
         {
             Item[i].color = Color.white;
         }
@@ -159,23 +159,23 @@ public class Item_sys : MonoBehaviour
             Item_num = 1;
         }
 
-        else if (degrees <= 240)
+        else if (degrees <= 270)
         {
             Item[2].color = Color.gray;
             Item_num = 2;
         }
 
-        else if (degrees <= 300)
+        else if (degrees <= 360)
         {
             Item[3].color = Color.gray;
             Item_num = 3;
         }
 
-        else if (degrees <= 360)
-        {
-            Item[4].color = Color.gray;
-            Item_num = 4;
-        }
+        //else if (degrees <= 360)
+        //{
+        //    Item[4].color = Color.gray;
+        //    Item_num = 4;
+        //}
 
     }
 
@@ -187,10 +187,7 @@ public class Item_sys : MonoBehaviour
     {
         switch (Item_num)
         {
-            //case 0:
-            //    StartCoroutine(CoolTime(Item_num, cool));
-            //    //アイテム処理追加
-            //    break;
+           
             case 0:
                 Debug.Log("ssss");
                 I_active.Set_Item(_umbrella, true);
@@ -210,10 +207,10 @@ public class Item_sys : MonoBehaviour
                 StartCoroutine(CoolTime(Item_num, cool));
                 Debug.Log("use =" + Item_num);
                 break;
-            case 4:
-                StartCoroutine(CoolTime(Item_num, cool));
-                Debug.Log("use =" + Item_num);
-                break;
+            //case 4:
+            //    StartCoroutine(CoolTime(Item_num, cool));
+            //    Debug.Log("use =" + Item_num);
+            //    break;
             default:
                 break;
         }
