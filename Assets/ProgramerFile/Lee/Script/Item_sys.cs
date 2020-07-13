@@ -43,8 +43,8 @@ public class Item_sys : MonoBehaviour
     //-------------------------------------------------
     [Header("アイテム参考リスト"),SerializeField]
     private GameObject _umbrella;
-    //[SerializeField]
-    //GameObject _item1;
+    [SerializeField]
+    private GameObject _wachingBar;
     //[SerializeField]
     //GameObject _item2;
     //[SerializeField]
@@ -188,22 +188,29 @@ public class Item_sys : MonoBehaviour
         switch (Item_num)
         {
            
+            //傘関連処理
             case 0:
-                Debug.Log("ssss");
                 I_active.Set_Item(_umbrella, true);
                 StartCoroutine(CoolTime(Item_num, cool));
                 StartCoroutine(I_active.duration(_umbrella, 5.0f));
                 Debug.Log("use =" + Item_num);
-                break;
+            
+            break;
+
+            //ハンカチ連処理
             case 1:
+
                 if (Player.useable_Hanky)
                 {
+                    _wachingBar.SetActive(true);
                     StartCoroutine(CoolTime(Item_num, cool));
-                    Boss.call = true;
+                    WachingBar.is_Washing = true; // 鏡を洗い開始
                 }
-                    
                 //------
-                //else
+                else
+                {
+                    Debug.Log("鏡がいないです");
+                }
                 //------
                 break;
             case 2:

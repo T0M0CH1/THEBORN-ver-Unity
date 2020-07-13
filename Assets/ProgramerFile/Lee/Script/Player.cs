@@ -128,7 +128,6 @@ public class Player : MonoBehaviour
             //catchForm = false;
             Quest = false;
             Debug.Log("探索終わり");
-
         }
     }
 
@@ -190,7 +189,7 @@ public class Player : MonoBehaviour
             //renderer.flipX = false;
         }
 
-        if (Battery.is_charging) return; //充電中には移動不可
+        if (Battery.is_charging || WachingBar.is_Washing) return; //充電中,探索中には移動不可
         transform.position += Move_Velocity * Move_Speed * Time.deltaTime;    
     }
 
@@ -225,6 +224,9 @@ public class Player : MonoBehaviour
         if (Battery.is_charging) return; //充電中にはJump不可
         rb.velocity = Vector2.zero;        
         Jump_Velocity = new Vector2(0, Jump_Power);
+
+        if (Battery.is_charging || WachingBar.is_Washing) return; //充電中,探索中には移動不可
+
         rb.AddForce(Jump_Velocity, ForceMode2D.Impulse);
         
         is_Grounding = false;
