@@ -57,6 +57,8 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public static GameObject mirror_obj;
     [HideInInspector]
+    public static GameObject Enemy_bug_obj;
+    [HideInInspector]
     public static bool moveable = true;
     //------------------------------------------------------------------
 
@@ -96,7 +98,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(is_Grounding == false)
+        rb.constraints = RigidbodyConstraints2D.None; // bug修正
+
+        if (is_Grounding == false)
         {
             renderer.sprite = playerImages[3];
         }
@@ -202,10 +206,11 @@ public class Player : MonoBehaviour
     /// </summary>
     void Light_ON_OFF()
     {
+        if (WachingBar.is_Washing == true) return; //鏡を洗う時は実行しない
 
         if (SW_Light)
         {
-           //Debug.Log("ライトを切った");
+            //Debug.Log("ライトを切った");
             Hend_Light.SetActive(false);
             Move_Speed = Slow_Speed;
         }
@@ -278,6 +283,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Enemy(Bug)")
         {
             useable_homesickness = true;
+            Enemy_bug_obj = collision.gameObject;
         }
     }
 
