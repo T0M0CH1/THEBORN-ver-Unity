@@ -4,10 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class TitleSceneController : MonoBehaviour
+public class Title2Option : MonoBehaviour
 {
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -17,18 +15,15 @@ public class TitleSceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (Input.GetKeyDown("joystick button 0"))
+        {
+            SceneManager.LoadScene("Title");
+        }
     }
 
     public void Buttonclicked()
     {
-        Player.halfwayBool = false;
-        SceneManager.LoadScene("Movie");
-    }
-    //iwasaki追加
-
-    public void Continue()
-    {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("Option");
     }
 }
