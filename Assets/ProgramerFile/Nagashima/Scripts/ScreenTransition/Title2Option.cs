@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class GoalManager : MonoBehaviour
+public class Title2Option : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,5 +16,10 @@ public class GoalManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Buttonclicked()
+    {
+        SceneManager.LoadScene("Option");
     }
 }

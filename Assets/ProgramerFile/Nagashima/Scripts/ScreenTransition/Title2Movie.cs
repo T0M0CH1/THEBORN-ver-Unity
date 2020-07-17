@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class OptionSceneController : MonoBehaviour
+public class Title2Movie : MonoBehaviour
 {
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,6 @@ public class OptionSceneController : MonoBehaviour
 
     public void Buttonclicked()
     {
-        SceneManager.LoadScene("Option");
+        SceneManager.LoadScene("Movie");
     }
 }
