@@ -215,7 +215,7 @@ public class Item_sys : MonoBehaviour
                 break;
             case 2:
                 StartCoroutine(CoolTime(Item_num, cool));
-                Debug.Log("use =" + Item_num);
+                Player.moveable = true;
                 break;
             case 3:
                 StartCoroutine(CoolTime(Item_num, cool));

@@ -13,6 +13,7 @@ TagManager:
   - Boss
   - Mirror
   - Light
+  - Enemy(Bug)
   layers:
   - Default
   - TransparentFX

@@ -53,7 +53,11 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public static bool useable_Hanky; // ハンカチ使用可能変数
     [HideInInspector]
+    public static bool useable_homesickness; // 香水使用可能変数
+    [HideInInspector]
     public static GameObject mirror_obj;
+    [HideInInspector]
+    public static bool moveable = true;
     //------------------------------------------------------------------
 
     private bool is_Jumping;
@@ -173,6 +177,8 @@ public class Player : MonoBehaviour
         vert = Input.GetAxis("Vertical");        
         Move_Velocity = Vector3.zero;
 
+        if (Battery.is_charging || WachingBar.is_Washing || !moveable) return; //充電中,探索中には移動不可
+
         if (hori < 0)
         {
             renderer.sprite = playerImages[1];
@@ -188,8 +194,6 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector3(P_Scals.x, P_Scals.y, P_Scals.z);
             //renderer.flipX = false;
         }
-
-        if (Battery.is_charging || WachingBar.is_Washing) return; //充電中,探索中には移動不可
         transform.position += Move_Velocity * Move_Speed * Time.deltaTime;    
     }
 
@@ -225,7 +229,7 @@ public class Player : MonoBehaviour
         rb.velocity = Vector2.zero;        
         Jump_Velocity = new Vector2(0, Jump_Power);
 
-        if (Battery.is_charging || WachingBar.is_Washing) return; //充電中,探索中には移動不可
+        if (Battery.is_charging || WachingBar.is_Washing || !moveable) return; //充電中,探索中には移動不可
 
         rb.AddForce(Jump_Velocity, ForceMode2D.Impulse);
         
@@ -270,6 +274,11 @@ public class Player : MonoBehaviour
             useable_Hanky = true;
             mirror_obj = collision.gameObject;
         }
+
+        if (collision.gameObject.tag == "Enemy(Bug)")
+        {
+            useable_homesickness = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -277,6 +286,11 @@ public class Player : MonoBehaviour
         if(collision.gameObject.tag == "Mirror")
         {
             useable_Hanky = false;
+        }
+
+        if (collision.gameObject.tag == "Enemy(Bug)")
+        {
+            useable_homesickness = false;
         }
     }
 }
