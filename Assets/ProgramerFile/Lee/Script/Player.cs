@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        rb.constraints = RigidbodyConstraints2D.None; // bug修正
+        rb.constraints = RigidbodyConstraints2D.None　| RigidbodyConstraints2D.FreezeRotation; // bug修正
 
         if (is_Grounding == false)
         {
