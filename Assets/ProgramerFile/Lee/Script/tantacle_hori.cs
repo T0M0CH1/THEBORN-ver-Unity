@@ -6,10 +6,13 @@ using UnityEngine.SceneManagement;
 public class tantacle_hori : MonoBehaviour
 {
     Vector3 pos;
-    float temp = 0;
+
+    Collider2D col;
 
     void Start()
     {
+        col=GetComponent<Collider2D>();
+
         StartCoroutine(Moving());
         pos = transform.position;
     }
@@ -38,29 +41,6 @@ public class tantacle_hori : MonoBehaviour
 
     }
 
-    private IEnumerator Moving()
-    {
-        float temp = 0;
-        pos = transform.position;
-        yield return new WaitForSeconds(1.0f);
-        while (temp < 1)
-        {
-            pos.x = Mathf.Lerp(-15.0f, 10.0f, temp);
-            temp += Time.deltaTime;
-            transform.position = pos;
-            yield return new WaitForFixedUpdate();
-        }
-
-        while (temp > 0)
-        {
-            pos.x = Mathf.Lerp(-15.0f, 10.0f, temp);
-            temp -= Time.deltaTime;
-            transform.position = pos;
-            yield return new WaitForFixedUpdate();
-        }
-        Destroy(gameObject, 1.0f);
-    }
-
     private void OnTriggerEnter2D(Collider2D col)
     {
         //Enemy(tentacle)
@@ -69,4 +49,35 @@ public class tantacle_hori : MonoBehaviour
             SceneManager.LoadScene("GameOver");
         }
     }
+
+    /// <summary>
+    /// tantacle_moveing
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator Moving()
+    {
+        float temp = 0;
+        pos = transform.position;
+        yield return new WaitForSeconds(2.0f);
+        while (temp < 1)
+        {
+            pos.x = Mathf.Lerp(-15.0f, 10.0f, temp);
+            temp += Time.deltaTime;
+            transform.position = pos;
+            yield return new WaitForFixedUpdate();
+        }
+
+        col.enabled = false;
+        while (temp > 0)
+        {
+            pos.x = Mathf.Lerp(-15.0f, 10.0f, temp);
+            temp -= Time.deltaTime;
+            transform.position = pos;
+            yield return new WaitForFixedUpdate();
+        }
+        tentacle_ver_controll.attackable = true;
+        Destroy(gameObject, 1.0f);
+    }
+
+ 
 }
