@@ -55,7 +55,6 @@ public class Manger_gameover : MonoBehaviour
             Rest_Color();
             Menu_Num--;
         }
-        Debug.Log(Menu_Num);
     }
     //================================================
 
@@ -72,7 +71,16 @@ public class Manger_gameover : MonoBehaviour
         switch (Menu_Num)
         {
             case 0:
-                SceneManager.LoadScene("MainScene");
+                if(Player.halfwayBool)
+                {
+                    SceneManager.LoadScene(Player.sceneName); // save point call
+                    //SceneManager.LoadScene("Boss(200717)"); // save point call
+                }
+
+                else
+                {
+                    SceneManager.LoadScene("MainScene(20200710)");
+                }
                 break;
 
             case 1:

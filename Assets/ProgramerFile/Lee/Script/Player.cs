@@ -67,8 +67,10 @@ public class Player : MonoBehaviour
     //iwasaki変数
     [HideInInspector]
     public static bool halfwayBool;
-    [SerializeField]
-    private GameObject halfwayPoint;
+
+    [HideInInspector]
+    public static GameObject halfwayPoint;
+
     [HideInInspector]
     public static bool enemyBool = true;
     [SerializeField]
@@ -79,13 +81,21 @@ public class Player : MonoBehaviour
     public static float durationTimes;
     [HideInInspector]
     public static bool catchForm;
+    [HideInInspector]
+    public static string sceneName;
 
     void Awake()
     {
         if (halfwayBool)
         {
-            gameObject.transform.position = new Vector2(halfwayPoint.transform.position.x, -3.44f);
+            //gameObject.transform.position = halfwayPoint.transform.position;
+            halfwayBool = false;
         }
+        
+    }
+
+    void Start()
+    {
         rb = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -258,6 +268,8 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "HalfwayPoint")
         {
             halfwayBool = true;
+            halfwayPoint = collision.gameObject;
+            sceneName = SceneManager.GetActiveScene().name;
         }
 
         if (collision.gameObject.tag == "Goal")

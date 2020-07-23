@@ -21,11 +21,16 @@ public class tentacle_ver_controll : MonoBehaviour
 
     GameObject[] obj = new GameObject[10];
 
-    public static bool attackable = true;
+    public static bool attackable;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        //StartCoroutine(hori_ver_tentacle_init());
+    }
+
     void Start()
     {
+        attackable = true;
         StartCoroutine(hori_ver_tentacle_init());
     }
 
@@ -33,7 +38,26 @@ public class tentacle_ver_controll : MonoBehaviour
     void Update()
     {
         //transform.position = cam.transform.position;
+    }
 
+    private IEnumerator hori_ver_tentacle_init()
+    {
+        yield return new WaitUntil(() => attackable);
+
+        int rnd;
+
+        rnd = Random.Range(0, 2);
+        switch (rnd)
+        {
+            case 0:
+                tentacle_ver_init();
+                break;
+            case 1:
+                tentacle_hori_init();
+                break;
+        }
+        attackable = false;
+        StartCoroutine(hori_ver_tentacle_init());
     }
 
     void tentacle_ver_init()
@@ -71,25 +95,5 @@ public class tentacle_ver_controll : MonoBehaviour
                 tentacle_hori_init();
                 break;
         }
-    }
-
-    private IEnumerator hori_ver_tentacle_init()
-    {
-        yield return new WaitUntil(() => attackable);
-
-        int rnd;
-
-        rnd = Random.Range(0, 2);
-        switch (rnd)
-        {
-            case 0:
-                tentacle_ver_init();
-                break;
-            case 1:
-                tentacle_hori_init();
-                break;
-        }
-        attackable = false;
-        StartCoroutine(hori_ver_tentacle_init());
     }
 }

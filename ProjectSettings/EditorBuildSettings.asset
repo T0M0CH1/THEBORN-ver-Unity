@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ProgramerFile/Iwasaki/Scene/Result.unity
     guid: 3ba908bd121e5894da27e726a5dbf08b
+  - enabled: 1
+    path: Assets/ProgramerFile/Lee/Scens/Boss(200717).unity
+    guid: b754cf0d916a97a4fa2d3da33568d1ff
+  - enabled: 1
+    path: Assets/ProgramerFile/Lee/Scens/MainScene(20200710).unity
+    guid: e0b97bbc6555b984788585fb9314d935
   m_configObjects: {}
