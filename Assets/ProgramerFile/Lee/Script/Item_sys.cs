@@ -203,19 +203,33 @@ public class Item_sys : MonoBehaviour
                 if (Player.useable_Hanky)
                 {
                     _wachingBar.SetActive(true);
-                    StartCoroutine(CoolTime(Item_num, cool));
+                    //StartCoroutine(CoolTime(Item_num, cool));
                     WachingBar.is_Washing = true; // 鏡を洗い開始
                 }
                 //------
                 else
                 {
                     Debug.Log("鏡がいないです");
+                   
                 }
                 //------
                 break;
             case 2:
-                StartCoroutine(CoolTime(Item_num, cool));
-                Player.moveable = true;
+
+                //香水処理
+                if(Player.useable_homesickness)
+                {
+                    StartCoroutine(CoolTime(Item_num, cool));
+                    Player.moveable = true;
+                    Destroy(Player.Enemy_bug_obj, 1.0f);
+                }
+
+                else
+                {
+                    Debug.Log("敵がいない");
+                }
+
+
                 break;
             case 3:
                 StartCoroutine(CoolTime(Item_num, cool));
