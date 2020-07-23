@@ -204,25 +204,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a5d8871f9c839d489e7377980ab6aa0, type: 3}
---- !u!1 &286242438 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6503520160543445142, guid: ea0a4ebbf4f42ec489a13cea3c15add8,
-    type: 3}
-  m_PrefabInstance: {fileID: 706585085}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &286242439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286242438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb2e89f9d150bf44da30ff7ca117678e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1067804721}
 --- !u!1 &341826177 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1221471937652573488, guid: 39b26aec3a69b8d42838d062b2daab16,
@@ -457,6 +438,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 194126037, guid: ea0a4ebbf4f42ec489a13cea3c15add8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 194126039, guid: ea0a4ebbf4f42ec489a13cea3c15add8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 286242439, guid: ea0a4ebbf4f42ec489a13cea3c15add8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1067804721}
+    - target: {fileID: 2105175316202457099, guid: ea0a4ebbf4f42ec489a13cea3c15add8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6503520160543445140, guid: ea0a4ebbf4f42ec489a13cea3c15add8,
         type: 3}
       propertyPath: m_BackGroundColor.r
