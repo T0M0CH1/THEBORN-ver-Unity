@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 2896665511322319123}
   - component: {fileID: 2896665509762426965}
   - component: {fileID: 2896665511322319122}
-  - component: {fileID: 1553567229}
+  - component: {fileID: 6787647233147835248}
   m_Layer: 0
   m_Name: Player_Sample
   m_TagString: Player
@@ -230,9 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334bc9f61b02ce04db5966df8c74ee90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Move_Speed: 1.67
-  Slow_Speed: 5
-  Nomal_Speed: 10
+  Move_Speed: 5
   Jump_Power: 10
   Hend_Light: {fileID: 2628089568682646147}
   playerImages:
@@ -242,7 +240,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 741db898d0424ec4495557b80233b608, type: 3}
   - {fileID: 21300000, guid: 3bb2fa9e8d3c6ee449b5c4c660ce18bf, type: 3}
   - {fileID: 21300000, guid: 51df1c839b9fcc34f9bd848649e16711, type: 3}
-  halfwayPoint: {fileID: 0}
   chargeSeconds: 3
   lightSeconds: 10
 --- !u!95 &2896665511322319122
@@ -264,7 +261,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!70 &1553567229
+--- !u!70 &6787647233147835248
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -278,7 +275,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 3.37}
+  m_Size: {x: 0.97, y: 3.33}
   m_Direction: 0
 --- !u!1 &3565153973169106533
 GameObject:

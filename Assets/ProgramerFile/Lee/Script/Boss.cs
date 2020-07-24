@@ -40,7 +40,6 @@ public class Boss : MonoBehaviour
             Destroy(Player.mirror_obj);
             call = false;
         }
-            
     }
 
     private void OnTriggerEnter2D(Collider2D coll)

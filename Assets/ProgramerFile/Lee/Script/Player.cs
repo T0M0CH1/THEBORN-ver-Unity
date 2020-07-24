@@ -10,13 +10,13 @@ public class Player : MonoBehaviour
     //Item_sys item_sys;
 
     [SerializeField, Range(0.0f,10.0f)]
-    private float Move_Speed = 10.0f; //移動速度
+    public float Move_Speed = 10.0f; //移動速度
 
-    [SerializeField, Range(0.0f, 10.0f)]
-    private float Slow_Speed = 5.0f;
+    //[SerializeField, Range(0.0f, 10.0f)]
+    //private float Slow_Speed = 5.0f;
 
-    [SerializeField, Range(0.0f, 10.0f)]
-    private float Nomal_Speed = 10.0f;
+    //[SerializeField, Range(0.0f, 10.0f)]
+    //private float Nomal_Speed = 10.0f;
 
     [SerializeField, Range(0.0f, 10.0f)]
     private float Jump_Power = 5.0f; //ジャンプ＿力
@@ -44,6 +44,10 @@ public class Player : MonoBehaviour
     //------------------------------------------------------------------
     [HideInInspector]
     public static bool SW_Light = false;
+    [HideInInspector]
+    public static bool Jumpable = true;
+    [HideInInspector]
+    public static bool moveable = true;
 
     private bool Quest = false;
     private bool Light = false;
@@ -58,8 +62,6 @@ public class Player : MonoBehaviour
     public static GameObject mirror_obj;
     [HideInInspector]
     public static GameObject Enemy_bug_obj;
-    [HideInInspector]
-    public static bool moveable = true;
     //------------------------------------------------------------------
 
     private bool is_Jumping;
@@ -69,7 +71,7 @@ public class Player : MonoBehaviour
     public static bool halfwayBool;
 
     [HideInInspector]
-    public static GameObject halfwayPoint;
+    public static Vector3 halfwayPoint;
 
     [HideInInspector]
     public static bool enemyBool = true;
@@ -88,7 +90,7 @@ public class Player : MonoBehaviour
     {
         if (halfwayBool)
         {
-            //gameObject.transform.position = halfwayPoint.transform.position;
+            transform.position = halfwayPoint;
             halfwayBool = false;
         }
         
@@ -104,6 +106,8 @@ public class Player : MonoBehaviour
         is_Jumping = false;
         P_Scals = transform.localScale;
         SW_Light = false;
+        moveable = true;
+        Jumpable = true;
     }
 
     void Update()
@@ -191,7 +195,8 @@ public class Player : MonoBehaviour
         vert = Input.GetAxis("Vertical");        
         Move_Velocity = Vector3.zero;
 
-        if (Battery.is_charging || WachingBar.is_Washing || !moveable) return; //充電中,探索中には移動不可
+        //if (Battery.is_charging || WachingBar.is_Washing || !moveable) return; //充電中,探索中には移動不可
+        if (!moveable) return; //充電中,探索中には移動不可
 
         if (hori < 0)
         {
@@ -222,14 +227,16 @@ public class Player : MonoBehaviour
         {
             //Debug.Log("ライトを切った");
             Hend_Light.SetActive(false);
-            Move_Speed = Slow_Speed;
+            Move_Speed *= 0.5f;
+            //Move_Speed = Slow_Speed;
         }
         else
         {
             //Debug.Log("ライトをつける");
             StartCoroutine(Battery.duration(lightSeconds));
             Hend_Light.SetActive(true);
-            Move_Speed = Nomal_Speed;
+            Move_Speed /= 0.5f;
+            //Move_Speed = Nomal_Speed;
         }
         SW_Light = !SW_Light;
     }
@@ -244,7 +251,8 @@ public class Player : MonoBehaviour
         rb.velocity = Vector2.zero;        
         Jump_Velocity = new Vector2(0, Jump_Power);
 
-        if (Battery.is_charging || WachingBar.is_Washing || !moveable) return; //充電中,探索中には移動不可
+        //if (Battery.is_charging || WachingBar.is_Washing ||!moveable) return; //充電中,探索中には移動不可
+        if (!Jumpable) return; //充電中,探索中には移動不可
 
         rb.AddForce(Jump_Velocity, ForceMode2D.Impulse);
         
@@ -268,7 +276,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "HalfwayPoint")
         {
             halfwayBool = true;
-            halfwayPoint = collision.gameObject;
+            halfwayPoint = collision.gameObject.transform.position;
             sceneName = SceneManager.GetActiveScene().name;
         }
 

@@ -7,7 +7,7 @@ public class GroundEnemy : MonoBehaviour
 {
     private GameObject player;
     [SerializeField]
-    private float EnemySpeed = 1;
+    private float EnemySpeed = 5;
 
 
     private Vector2 perceptionFront;
@@ -40,49 +40,61 @@ public class GroundEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ライトが点いているときの虫の索敵範囲
-        if (Player.SW_Light == false)
-        {
-            //後ろ側のコライダーの調整
-            perceptionBehind.x = OFF_Perception;
-            behindCollider.size = new Vector2(perceptionBehind.x, perceptionBehind.y);
-            behindCollider.offset = new Vector2(MathRangeBehind(perceptionBehind.x), behindPos.y);
-            //前側のコライダーの調整
-            perceptionFront.x = OFF_Perception;
-            frontCollider.size = new Vector2(perceptionFront.x, perceptionFront.y);
-            frontCollider.offset = new Vector2(MathRangeFront(perceptionFront.x), frontPos.y);
-        }
-        //ライトが消えているときの虫の索敵範囲
-        if (Player.SW_Light)
-        {
-            //後ろ側のコライダーの調整
-            perceptionBehind.x = ON_Perception;            
-            behindCollider.size = new Vector2(perceptionBehind.x, perceptionBehind.y);
-            behindCollider.offset = new Vector2(MathRangeBehind(perceptionBehind.x), behindPos.y);
-            //前側のコライダーの調整
-            perceptionFront.x = ON_Perception;
-            frontCollider.size = new Vector2(perceptionFront.x, perceptionFront.y);
-            frontCollider.offset = new Vector2(MathRangeFront(perceptionFront.x), frontPos.y);
-        }
+        ////ライトが点いているときの虫の索敵範囲
+        //if (Player.SW_Light == false)
+        //{
+        //    //後ろ側のコライダーの調整
+        //    perceptionBehind.x = OFF_Perception;
+        //    behindCollider.size = new Vector2(perceptionBehind.x, perceptionBehind.y);
+        //    behindCollider.offset = new Vector2(MathRangeBehind(perceptionBehind.x), behindPos.y);
+        //    //前側のコライダーの調整
+        //    perceptionFront.x = OFF_Perception;
+        //    frontCollider.size = new Vector2(perceptionFront.x, perceptionFront.y);
+        //    frontCollider.offset = new Vector2(MathRangeFront(perceptionFront.x), frontPos.y);
+        //}
+        ////ライトが消えているときの虫の索敵範囲
+        //if (Player.SW_Light)
+        //{
+        //    //後ろ側のコライダーの調整
+        //    perceptionBehind.x = ON_Perception;            
+        //    behindCollider.size = new Vector2(perceptionBehind.x, perceptionBehind.y);
+        //    behindCollider.offset = new Vector2(MathRangeBehind(perceptionBehind.x), behindPos.y);
+        //    //前側のコライダーの調整
+        //    perceptionFront.x = ON_Perception;
+        //    frontCollider.size = new Vector2(perceptionFront.x, perceptionFront.y);
+        //    frontCollider.offset = new Vector2(MathRangeFront(perceptionFront.x), frontPos.y);
+        //}
 
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //索敵範囲内にプレイヤーがいたら
-        if(collision.gameObject.tag == "Player")
+
+        if (collision.gameObject.tag == "Player")
         {
             //プレイヤーを追いかける処理
-            this.transform.position = Vector3.MoveTowards(transform.position, new Vector2(player.transform.position.x, -4.38f), Time.deltaTime * EnemySpeed);
+            if (!Player.SW_Light) this.transform.position = Vector3.MoveTowards(transform.position, new Vector2(player.transform.position.x, 0.0f), Time.deltaTime * EnemySpeed);
+            
             //左右反転処理
-            if (this.transform.position.x < player.transform.position.x)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-            else
-            {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
+            if (this.transform.position.x < player.transform.position.x) transform.rotation = Quaternion.Euler(0, 0, 0);
+            else this.transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            player.GetComponent<Player>().Move_Speed *= 0.1f;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            player.GetComponent<Player>().Move_Speed /= 0.1f;
         }
     }
 

@@ -141,6 +141,9 @@ public class Battery : MonoBehaviour
            yield break;
         }
         is_charging = true;
+        Player.Jumpable = false;
+        Player.moveable = false;
+
         Debug.Log("charging");
         while (battery < 7)
         {            
@@ -148,6 +151,9 @@ public class Battery : MonoBehaviour
             yield return new WaitForSeconds(dur);
         }
         is_charging = false;
+        Player.Jumpable = true;
+        Player.moveable = true;
+
         Player.catchForm = false;        
         Debug.Log("charging exit");
     }

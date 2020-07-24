@@ -51,7 +51,8 @@ public class WachingBar : MonoBehaviour
     private IEnumerator End_Waching()
     {
         yield return new WaitUntil(() => is_Washing); // if is_Washing is true, next process
-
+        Player.Jumpable = false;
+        Player.moveable = false;
         while (Gauge < 1.0f)
         {
             slider.value = Gauge;
@@ -62,6 +63,9 @@ public class WachingBar : MonoBehaviour
         yield return new WaitUntil(() => Gauge >= 1.0f); // if Gauge is Greater than 1.0f, next process
 
         is_Washing = false;
+        Player.Jumpable = true;
+        Player.moveable = true;
+
         Boss.call = true; //bossを呼び出す
 
         gameObject.SetActive(false);
