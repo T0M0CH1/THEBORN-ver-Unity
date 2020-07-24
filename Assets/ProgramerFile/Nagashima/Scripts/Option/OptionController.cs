@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class OptionController : MonoBehaviour
 {
     public AudioMixer Mixer;
-
 
     // インスペクター上からスライダーオブジェクトを登録
     public Slider MasterSlider;
@@ -33,28 +31,6 @@ public class OptionController : MonoBehaviour
         {
             SeSlider.value = Volume;
         }
-    }
-
-    private void Update()
-    {
-        MasterSlider.value += Input.GetAxis("Horizontal");
-        BGMSlider.value += Input.GetAxis("Horizontal");
-        SeSlider.value += Input.GetAxis("Horizontal");
-    }
-
-    public void MasterVol(Slider slider)
-    {
-        Mixer.SetFloat("MasterVol", slider.value);
-    }
-
-    public void BGMVol(Slider slider)
-    {
-        Mixer.SetFloat("BGMVol", slider.value);
-    }
-
-    public void SEVol(Slider slider)
-    {
-        Mixer.SetFloat("SEVol", slider.value);
     }
 
     // ミキサー操作
