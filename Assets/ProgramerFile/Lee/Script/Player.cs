@@ -66,13 +66,6 @@ public class Player : MonoBehaviour
 
     private bool is_Jumping;
 
-    //iwasaki変数
-    [HideInInspector]
-    public static bool halfwayBool;
-
-    [HideInInspector]
-    public static Vector3 halfwayPoint;
-
     [HideInInspector]
     public static bool enemyBool = true;
     [SerializeField]
@@ -83,15 +76,13 @@ public class Player : MonoBehaviour
     public static float durationTimes;
     [HideInInspector]
     public static bool catchForm;
-    [HideInInspector]
-    public static string sceneName;
 
     void Awake()
     {
-        if (halfwayBool)
+        if (SaveData.halfwayBool)
         {
-            transform.position = halfwayPoint;
-            halfwayBool = false;
+            transform.position = SaveData.halfwayPoint;
+            SaveData.halfwayBool = false;
         }
         
     }
@@ -275,9 +266,10 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "HalfwayPoint")
         {
-            halfwayBool = true;
-            halfwayPoint = collision.gameObject.transform.position;
-            sceneName = SceneManager.GetActiveScene().name;
+            SaveData.halfwayBool = true;
+            SaveData.halfwayPoint = collision.gameObject.transform.position;
+            SaveData.sceneName = SceneManager.GetActiveScene().name;
+            SaveData.is_saved = true;
         }
 
         if (collision.gameObject.tag == "Goal")

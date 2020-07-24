@@ -8,20 +8,29 @@ public class tentacle_ver_controll : MonoBehaviour
     GameObject tentacl_vet_controll;
 
     [SerializeField]
-    GameObject[] Respawn_ver;
+    GameObject[] Respawn_ver;//縦向き攻撃生成位置
 
     [SerializeField]
-    GameObject Respawn_hori;
+    GameObject Respawn_hori; //横向き攻撃生成位置
 
     [SerializeField]
-    GameObject prefab_ver;
+    GameObject prefab_ver; //縦向き攻撃オブジェクト
 
     [SerializeField]
-    GameObject prefab_hori;
+    GameObject prefab_hori; //横向き攻撃オブジェクト
 
-    GameObject[] obj = new GameObject[10];
+    [SerializeField]
+    GameObject prefab_tantacle_effect_ver; //横向き攻撃オブジェクト    
+    [SerializeField]
+    GameObject prefab_tantacle_effect_hori;　//横向き攻撃オブジェクト
+
+    GameObject[] obj = new GameObject[50];
 
     public static bool attackable;
+
+    int rnd_pos_temp = 0;
+    int rnd_pos;
+
 
     private void Awake()
     {
@@ -37,7 +46,6 @@ public class tentacle_ver_controll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.position = cam.transform.position;
     }
 
     private IEnumerator hori_ver_tentacle_init()
@@ -62,13 +70,21 @@ public class tentacle_ver_controll : MonoBehaviour
 
     void tentacle_ver_init()
     {
-        int rnd = Random.Range(3, Respawn_ver.Length);
+        int rnd = Random.Range(2, Respawn_ver.Length);
         for (int i = 0; i < rnd; i++)
         {
-            int rnd_pos = Random.Range(0, Respawn_ver.Length);
+            rnd_pos = Random.Range(0, Respawn_ver.Length);
+            if(rnd_pos == rnd_pos_temp - 1 || rnd_pos == rnd_pos_temp + 1 || rnd_pos == rnd_pos_temp)
+            {
+                i--;
+                continue;
+            }
             //obj[i] = Instantiate(prefab, Respawn[i].transform.position, Quaternion.identity);
             obj[i] = Instantiate(prefab_ver, Respawn_ver[rnd_pos].transform.position, Quaternion.identity);
+            Instantiate(prefab_tantacle_effect_ver, Respawn_ver[rnd_pos].transform.position, Quaternion.identity);
+
             //obj[i].transform.parent = tentacl_vet_controll.transform;
+            rnd_pos_temp = rnd_pos;
         }
     }
     
@@ -76,6 +92,11 @@ public class tentacle_ver_controll : MonoBehaviour
     void tentacle_hori_init()
     {
         Instantiate(prefab_hori, Respawn_hori.transform.position , Quaternion.identity);
+        Instantiate(prefab_tantacle_effect_hori, Respawn_hori.transform.position , Quaternion.identity);
+    }
+
+    void tentacle_ver_effect_init()
+    {
     }
 
     /// <summary>

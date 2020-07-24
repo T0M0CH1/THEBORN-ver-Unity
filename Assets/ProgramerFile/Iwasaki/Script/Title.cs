@@ -7,11 +7,18 @@ public class Title : MonoBehaviour
 {
     public void toSTART()
     {
-        Player.halfwayBool = false;
+        SaveData.halfwayBool = false;
         SceneManager.LoadScene("MainScene");
     }
     public void toCONTINUE()
     {
-        SceneManager.LoadScene("MainScene");
+        if (SaveData.is_saved)
+        {
+            SceneManager.LoadScene(SaveData.sceneName);
+        }
+        else
+        {
+            SceneManager.LoadScene("MainScene");
+        }
     }
 }

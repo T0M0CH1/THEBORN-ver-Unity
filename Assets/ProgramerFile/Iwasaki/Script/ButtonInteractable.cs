@@ -11,7 +11,7 @@ public class ButtonInteractable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player.halfwayBool == false)
+        if (SaveData.halfwayBool == false)
         {
             button.interactable = false;
         }

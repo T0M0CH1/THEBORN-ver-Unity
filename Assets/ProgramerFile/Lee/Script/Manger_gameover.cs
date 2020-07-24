@@ -71,9 +71,9 @@ public class Manger_gameover : MonoBehaviour
         switch (Menu_Num)
         {
             case 0:
-                if(Player.halfwayBool)
+                if(SaveData.halfwayBool)
                 {
-                    SceneManager.LoadScene(Player.sceneName); // save point call
+                    SceneManager.LoadScene(SaveData.sceneName); // save point call
                     //SceneManager.LoadScene("Boss(200717)"); // save point call
                 }
 

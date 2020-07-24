@@ -22,7 +22,7 @@ public class TitleSceneController : MonoBehaviour
 
     public void Buttonclicked()
     {
-        Player.halfwayBool = false;
+        SaveData.halfwayBool = false;
         SceneManager.LoadScene("Movie");
     }
     //iwasaki追加

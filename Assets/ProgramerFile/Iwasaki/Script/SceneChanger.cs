@@ -45,7 +45,7 @@ public class SceneChanger : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
-        Player.halfwayBool = false;
+        SaveData.halfwayBool = false;
         SceneManager.LoadScene("MainScene");
         yield break;
     }

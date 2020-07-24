@@ -6,15 +6,16 @@ using UnityEngine.SceneManagement;
 public class tantacle_hori : MonoBehaviour
 {
     Vector3 pos;
+    Vector3 temp_pos;
 
     Collider2D col;
 
     void Start()
     {
         col=GetComponent<Collider2D>();
-
         StartCoroutine(Moving());
         pos = transform.position;
+        temp_pos = tentacle_hori_pos.Global_pos;
     }
 
     // Update is called once per frame
@@ -57,11 +58,10 @@ public class tantacle_hori : MonoBehaviour
     private IEnumerator Moving()
     {
         float temp = 0;
-        pos = transform.position;
         yield return new WaitForSeconds(2.0f);
         while (temp < 1)
         {
-            pos.x = Mathf.Lerp(-15.0f, 10.0f, temp);
+            pos.x = Mathf.Lerp(temp_pos.x , temp_pos.x + 20.0f, temp);
             temp += Time.deltaTime;
             transform.position = pos;
             yield return new WaitForFixedUpdate();
@@ -70,7 +70,7 @@ public class tantacle_hori : MonoBehaviour
         col.enabled = false;
         while (temp > 0)
         {
-            pos.x = Mathf.Lerp(-15.0f, 10.0f, temp);
+            pos.x = Mathf.Lerp(temp_pos.x , temp_pos.x + 20.0f , temp);
             temp -= Time.deltaTime;
             transform.position = pos;
             yield return new WaitForFixedUpdate();

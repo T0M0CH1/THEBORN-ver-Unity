@@ -1,20 +1,21 @@
-﻿Shader "Custom/dissplve"
+﻿Shader "Custom/tentacle_Effect"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-		_noise("Texture", 2D) = "white" {}
     }
     SubShader
     {
-        // No culling or depth
-        Cull Off ZWrite Off ZTest Always
+        Tags { "RenderType"="Opaque" }
+        LOD 100
 
         Pass
         {
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            // make fog work
+            #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
 
@@ -27,32 +28,26 @@
             struct v2f
             {
                 float2 uv : TEXCOORD0;
+                UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
             };
+
+            sampler2D _MainTex;
+            float4 _MainTex_ST;
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                UNITY_TRANSFER_FOG(o,o.vertex);
                 return o;
             }
 
-            sampler2D _MainTex;
-			sampler2D _noise;
-
             fixed4 frag (v2f i) : SV_Target
             {
-				fixed3 col = tex2D(_MainTex, i.uv).rgb;
-				float height = tex2D(_noise, i.uv.xy).r;
-
-				float condition = step(height, sin(_Time * 10));
-                // just invert the colors
-
-				col = col * (1 - condition);
-				
-                //col.rgb = 1 - col.rgb;
-                return fixed4(col, 0.0f);
+				float d = distance(fixed2(0.5f, 0.5f) , i.uv);
+				return  d;
             }
             ENDCG
         }

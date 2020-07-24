@@ -75,7 +75,7 @@ public class Manger_Title : MonoBehaviour
         switch (Menu_Num)
         {
             case 0:
-                Player.halfwayBool = false;
+                SaveData.halfwayBool = false;
                 SceneManager.LoadScene("Movie");
                 break;
 

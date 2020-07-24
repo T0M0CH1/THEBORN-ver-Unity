@@ -8,6 +8,7 @@ public class GroundEnemy : MonoBehaviour
     private GameObject player;
     [SerializeField]
     private float EnemySpeed = 5;
+    private float distance;
 
 
     private Vector2 perceptionFront;
@@ -22,10 +23,12 @@ public class GroundEnemy : MonoBehaviour
     private float offsetBehind;
     private float offsetFront;
 
-    [SerializeField]
-    private float OFF_Perception;
-    [SerializeField]
-    private float ON_Perception;
+    //[SerializeField]
+    //private float OFF_Perception;
+    //[SerializeField]
+    //private float ON_Perception;
+
+    
     void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -35,6 +38,7 @@ public class GroundEnemy : MonoBehaviour
         //コライダーの位置初期化
         behindPos = behindCollider.GetComponent<BoxCollider2D>().offset;
         frontPos = frontCollider.GetComponent<BoxCollider2D>().offset;
+
     }
 
     // Update is called once per frame
@@ -64,29 +68,32 @@ public class GroundEnemy : MonoBehaviour
         //    frontCollider.size = new Vector2(perceptionFront.x, perceptionFront.y);
         //    frontCollider.offset = new Vector2(MathRangeFront(perceptionFront.x), frontPos.y);
         //}
-
     }
 
+    private void FixedUpdate()
+    {
+        move();
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag == "Player")
-        {
-            //プレイヤーを追いかける処理
-            if (!Player.SW_Light) this.transform.position = Vector3.MoveTowards(transform.position, new Vector2(player.transform.position.x, 0.0f), Time.deltaTime * EnemySpeed);
+        //if (collision.gameObject.tag == "Player")
+        //{
+        //    //プレイヤーを追いかける処理
+        //    if (!Player.SW_Light) this.transform.position = Vector3.MoveTowards(transform.position, new Vector2(player.transform.position.x, 0.0f), Time.deltaTime * EnemySpeed);
             
-            //左右反転処理
-            if (this.transform.position.x < player.transform.position.x) transform.rotation = Quaternion.Euler(0, 0, 0);
-            else this.transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
+        //    //左右反転処理
+        //    if (this.transform.position.x < player.transform.position.x) transform.rotation = Quaternion.Euler(0, 0, 0);
+        //    else this.transform.rotation = Quaternion.Euler(0, 180, 0);
+        //}
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" )
         {
-            player.GetComponent<Player>().Move_Speed *= 0.1f;
+            player.GetComponent<Player>().Move_Speed *= 0.2f;
         }
     }
 
@@ -94,18 +101,35 @@ public class GroundEnemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            player.GetComponent<Player>().Move_Speed /= 0.1f;
+            player.GetComponent<Player>().Move_Speed /= 0.2f;
         }
     }
 
-    private float MathRangeBehind(float behind)
+    //private float MathRangeBehind(float behind)
+    //{
+    //    offsetBehind = ((behind / 0.5f) * 0.25f) + 9;        
+    //    return offsetBehind;
+    //}
+    //private float MathRangeFront(float front)
+    //{
+    //    offsetFront = ((front / 0.5f) * -0.25f) - 7;
+    //    return offsetFront;
+    //}
+
+    private void move()
     {
-        offsetBehind = ((behind / 0.5f) * 0.25f) + 9;        
-        return offsetBehind;
+        distance = Vector3.Distance(player.transform.position, transform.position);
+        distance = Mathf.Abs(distance);
+
+        if(distance < 8.0f && !Player.SW_Light)
+        {          
+            this.transform.position = Vector3.MoveTowards(transform.position, new Vector2(player.transform.position.x, 0.0f), Time.deltaTime * EnemySpeed);
+         }
+
+        if (this.transform.position.x < player.transform.position.x) transform.rotation = Quaternion.Euler(0, 0, 0);
+        else this.transform.rotation = Quaternion.Euler(0, 180, 0);
+        //Debug.Log(distance);
     }
-    private float MathRangeFront(float front)
-    {
-        offsetFront = ((front / 0.5f) * -0.25f) - 7;
-        return offsetFront;
-    }
+
+    //虫を無くなる処理必要
 }
