@@ -79,7 +79,7 @@ public class Manger_gameover : MonoBehaviour
 
                 else
                 {
-                    SceneManager.LoadScene("MainScene(20200710)");
+                    SceneManager.LoadScene("MainScene(alpha)");
                 }
                 break;
 
