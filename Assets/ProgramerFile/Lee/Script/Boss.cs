@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
+
     [SerializeField]
     private float wait_time = 2.0f;
 

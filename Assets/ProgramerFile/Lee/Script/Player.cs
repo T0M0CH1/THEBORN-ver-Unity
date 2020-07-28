@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     //[SerializeField]
     //Item_sys item_sys;
 
+    public static bool BossEndFlag = false;
+
     [SerializeField, Range(0.0f,10.0f)]
     private float Move_Speed = 10.0f; //移動速度
 
@@ -165,6 +167,13 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Enemy" && enemyBool)
         {
             SceneManager.LoadScene("GameOver");
+        }
+        
+        // 長島追加　ボス戦への遷移用
+        if (collision.gameObject.tag == "Boss" && enemyBool)
+        {
+            BossEndFlag = true;
+            SceneManager.LoadScene("BadEndMovie");
         }
     }
 

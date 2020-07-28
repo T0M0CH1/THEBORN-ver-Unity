@@ -56,6 +56,12 @@ public class Manger_gameover : MonoBehaviour
             Menu_Num--;
         }
         Debug.Log(Menu_Num);
+
+        if (Menu_Move_X == 1 && Menu_Num < Menu_Size - 1 && Player.BossEndFlag == true)
+        {
+            Rest_Color();
+            Menu_Num += 2;
+        }
     }
     //================================================
 
@@ -77,6 +83,10 @@ public class Manger_gameover : MonoBehaviour
 
             case 1:
                 SceneManager.LoadScene("Title");
+                break;
+
+            case 2:
+                SceneManager.LoadScene("Boss(200717)");
                 break;
         }
     }
