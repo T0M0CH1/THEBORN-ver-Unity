@@ -45,14 +45,6 @@ public class Item_sys : MonoBehaviour
     private GameObject _umbrella;
     [SerializeField]
     private GameObject _wachingBar;
-    //[SerializeField]
-    //GameObject _item2;
-    //[SerializeField]
-    //GameObject _item3;
-    //[SerializeField]
-    //GameObject _item4;
-    //[SerializeField]
-    //GameObject _item5;
     //-------------------------------------------------
 
     private int Item_num; //Item 選択判定
@@ -62,6 +54,8 @@ public class Item_sys : MonoBehaviour
     private float Rsh; // Game_Pad 右スティックの右左を取得
     private float Rsv; // Game_Pad 右スティックの上下を取得
 
+
+    public static bool end_Washing; 
     //------------------------------------------------------------------
 
     void Awake()
@@ -210,7 +204,6 @@ public class Item_sys : MonoBehaviour
                 else
                 {
                     Debug.Log("鏡がいないです");
-                   
                 }
                 //------
                 break;

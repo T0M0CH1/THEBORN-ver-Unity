@@ -23,7 +23,7 @@ public class MovieSceneController : MonoBehaviour
         // 5秒後に画面遷移
         if(step_time>=5.0f)
         {
-            SceneManager.LoadScene("MainScene");
+            SceneManager.LoadScene("MainScene(alpha)");
         }
     }
 }

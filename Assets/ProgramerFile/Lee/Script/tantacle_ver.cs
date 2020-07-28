@@ -41,7 +41,7 @@ public class tantacle_ver : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         while (temp < 1)
         {
-            pos.y = Mathf.Lerp(StartPos.y, 5.0f, temp);
+            pos.y = Mathf.Lerp(StartPos.y, -4.0f, temp);
             temp += Time.deltaTime;
             transform.position = pos;
             yield return new WaitForFixedUpdate();
@@ -50,7 +50,7 @@ public class tantacle_ver : MonoBehaviour
         col.enabled = false;
         while (temp > 0)
         {
-            pos.y = Mathf.Lerp(StartPos.y, 5.0f, temp);
+            pos.y = Mathf.Lerp(StartPos.y, -4.0f, temp);
             temp -= Time.deltaTime;
             transform.position = pos;
             yield return new WaitForFixedUpdate();

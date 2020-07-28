@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 144048001178732025}
   - component: {fileID: 3752716551559397776}
   - component: {fileID: 144048001178732030}
-  - component: {fileID: 1688753375}
+  - component: {fileID: 6978936927143125902}
   - component: {fileID: 144048001178732024}
   m_Layer: 0
   m_Name: mirror
@@ -72,8 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -5507408474315666954, guid: 15eb62b8c0b6c406abbfc0df4beffd81,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 629b3e27f4317a44fb1da9702ca1a723, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,7 +104,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
---- !u!61 &1688753375
+--- !u!61 &6978936927143125902
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,14 +121,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 3.5}
     newSize: {x: 20.48, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 3.5}
   m_EdgeRadius: 0
 --- !u!114 &144048001178732024
 MonoBehaviour:
@@ -143,3 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bfc4cec4773c87449c3cd3dfa1fabd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite_img:
+  - {fileID: 21300000, guid: 629b3e27f4317a44fb1da9702ca1a723, type: 3}
+  - {fileID: 21300000, guid: 0a11d3e1ed53d9545879db513891b485, type: 3}
+  - {fileID: 21300000, guid: c800db46e64e0b7458b4c6d7c8629f3d, type: 3}

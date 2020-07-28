@@ -65,8 +65,9 @@ public class WachingBar : MonoBehaviour
         is_Washing = false;
         Player.Jumpable = true;
         Player.moveable = true;
-
+        
         Boss.call = true; //bossを呼び出す
+        mirror.mirror_change = true;
 
         gameObject.SetActive(false);
     }

@@ -14,8 +14,11 @@ public class Boss_Manger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Boss.Life <= 0)
+        if(Boss_replica.HP <= 0)
         {
+            //Game_Clear_move
+            SceneManager.LoadScene("Game_Clear_move");
+            Debug.Log("clear");
             //move Scene clear
         }
     }

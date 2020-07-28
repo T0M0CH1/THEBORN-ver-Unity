@@ -37,7 +37,7 @@ public class Boss : MonoBehaviour
         if(call == true)
         {
             transform.position = Player.mirror_obj.transform.position;
-            Destroy(Player.mirror_obj);
+            //Destroy(Player.mirror_obj);
             call = false;
         }
         Debug.Log(Life);

@@ -95,9 +95,6 @@ public class tentacle_ver_controll : MonoBehaviour
         Instantiate(prefab_tantacle_effect_hori, Respawn_hori.transform.position , Quaternion.identity);
     }
 
-    void tentacle_ver_effect_init()
-    {
-    }
 
     /// <summary>
     /// 横、縦の攻撃をランダムして攻撃
