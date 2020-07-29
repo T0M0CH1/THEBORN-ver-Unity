@@ -171,6 +171,11 @@ public class Player : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
         }
+
+        if (collision.gameObject.tag == "Enemy(yami)" && enemyBool)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     //------------------------------------------------------------------
@@ -272,10 +277,10 @@ public class Player : MonoBehaviour
             SaveData.is_saved = true;
         }
 
-        if (collision.gameObject.tag == "Goal")
-        {
-            SceneManager.LoadScene("Result");
-        }
+        //if (collision.gameObject.tag == "Goal")
+        //{
+        //    SceneManager.LoadScene("Result");
+        //}
        
     }
     private void OnTriggerStay2D(Collider2D collision)

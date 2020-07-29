@@ -21,9 +21,9 @@ public class camera : MonoBehaviour
             transform.position = new Vector3(-3.76f, -0.63f, -10);
         }
 
-        if (transform.position.x >= 20.5f)
+        if (transform.position.x >= 12.0f)
         {
-            transform.position = new Vector3(20.5f, -0.63f, -10);
+            transform.position = new Vector3(12.0f, -0.63f, -10);
         }
     }
 }

@@ -35,16 +35,16 @@ public class Boss_replica : MonoBehaviour
             is_sprite_Change = false;
         }
         //transform.position = Camera.main.ScreenToWorldPoint(new Vector3(960.0f, 800.0f , 10.0f));
-        pos = transform.position;
-        pos.x = player.transform.position.x;
-        pos.y = 1.8f;
-        transform.position = pos;
+        //pos = transform.position;
+        //pos.x = player.transform.position.x;
+        //pos.y = 1.8f;
+        //transform.position = pos;
     }
 
     private IEnumerator sprite_change()
     {
-        spriteRenderer.sprite = sprite[1];
-        yield return new WaitForSeconds(2.0f);
         spriteRenderer.sprite = sprite[0];
+        yield return new WaitForSeconds(2.0f);
+        spriteRenderer.sprite = sprite[1];
     }
 }

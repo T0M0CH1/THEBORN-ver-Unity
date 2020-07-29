@@ -89,21 +89,21 @@ public class GroundEnemy : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player" )
-        {
-            player.GetComponent<Player>().Move_Speed *= 0.2f;
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Player" )
+    //    {
+    //        player.GetComponent<Player>().Move_Speed *= 0.2f;
+    //    }
+    //}
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            player.GetComponent<Player>().Move_Speed /= 0.2f;
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Player")
+    //    {
+    //        player.GetComponent<Player>().Move_Speed /= 0.2f;
+    //    }
+    //}
 
     //private float MathRangeBehind(float behind)
     //{
@@ -121,7 +121,7 @@ public class GroundEnemy : MonoBehaviour
         distance = Vector3.Distance(player.transform.position, transform.position);
         distance = Mathf.Abs(distance);
 
-        if(distance < 8.0f && !Player.SW_Light)
+        if(distance < 8.0f)
         {          
             this.transform.position = Vector3.MoveTowards(transform.position, new Vector2(player.transform.position.x, 0.0f), Time.deltaTime * EnemySpeed);
          }

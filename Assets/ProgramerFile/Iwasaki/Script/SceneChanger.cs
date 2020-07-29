@@ -46,7 +46,7 @@ public class SceneChanger : MonoBehaviour
             yield return null;
         }
         SaveData.halfwayBool = false;
-        SceneManager.LoadScene("Boss");
+        SceneManager.LoadScene("MainScene(alpha)_stage2");
         yield break;
     }
 }
