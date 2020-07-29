@@ -26,7 +26,7 @@ public class goal : MonoBehaviour
             switch (_sceneName)
             {
                 case "MainScene(alpha)":
-                    SceneManager.LoadScene("Result");
+                    SceneManager.LoadScene("MainScene(alpha)_stage2");
                     break;
 
                 case "MainScene(alpha)_stage2":

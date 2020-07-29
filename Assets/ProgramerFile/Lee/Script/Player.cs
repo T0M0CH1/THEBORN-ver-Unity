@@ -174,7 +174,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy(yami)" && enemyBool)
         {
-            SceneManager.LoadScene("GameOver");
+            //SceneManager.LoadScene("GameOver");
         }
     }
 

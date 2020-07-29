@@ -110,7 +110,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.8531678, y: -1.29}
+  m_Offset: {x: -4.95, y: -1.29}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -121,7 +121,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 16.336336, y: 4.23}
+  m_Size: {x: 4.73, y: 4.23}
   m_EdgeRadius: 0
 --- !u!114 &4167406930271014982
 MonoBehaviour:
@@ -145,11 +145,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3418561928306466802}
   - component: {fileID: 3701517029906894965}
+  - component: {fileID: 4008334706068287524}
   - component: {fileID: 6412741489381800570}
   - component: {fileID: 4672908889020392163}
   - component: {fileID: 2717521073471080722}
-  - component: {fileID: 3310167841236814143}
-  - component: {fileID: 1477416352}
   m_Layer: 0
   m_Name: GroundEnemy
   m_TagString: GroundEnemy
@@ -165,8 +164,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8646060692881964242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalPosition: {x: 1.1219, y: -0.59335, z: -5}
+  m_LocalScale: {x: -0.2234369, y: 0.22343694, z: 1}
   m_Children:
   - {fileID: 6751199478216381607}
   - {fileID: 3035636984854230229}
@@ -222,6 +221,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &4008334706068287524
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8646060692881964242}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 3.9, y: -1.13}
+  m_Size: {x: 11.79, y: 4.6}
+  m_Direction: 1
 --- !u!114 &6412741489381800570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,40 +306,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 3.57}
   m_EdgeRadius: 0
---- !u!70 &3310167841236814143
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8646060692881964242}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 50, y: 5}
-  m_Direction: 1
---- !u!50 &1477416352
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8646060692881964242}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
