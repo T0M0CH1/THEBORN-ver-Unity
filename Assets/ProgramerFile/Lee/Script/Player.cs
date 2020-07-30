@@ -242,13 +242,13 @@ public class Player : MonoBehaviour
     /// </summary>
     void Jump ()
     {        
-        if (!is_Jumping) return;
+        if (!is_Jumping || !Jumpable) return;
         if (Battery.is_charging) return; //充電中にはJump不可
         rb.velocity = Vector2.zero;        
         Jump_Velocity = new Vector2(0, Jump_Power);
 
         //if (Battery.is_charging || WachingBar.is_Washing ||!moveable) return; //充電中,探索中には移動不可
-        if (!Jumpable) return; //充電中,探索中には移動不可
+        //if (!Jumpable) return; //充電中,探索中には移動不可
 
         rb.AddForce(Jump_Velocity, ForceMode2D.Impulse);
         
@@ -295,6 +295,7 @@ public class Player : MonoBehaviour
         {
             useable_Hanky = true;
             mirror_obj = collision.gameObject;
+
         }
 
         if (collision.gameObject.tag == "Enemy(Bug)")

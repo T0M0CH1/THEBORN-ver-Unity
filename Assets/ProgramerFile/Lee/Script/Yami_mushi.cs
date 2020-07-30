@@ -11,6 +11,7 @@ public class Yami_mushi : MonoBehaviour
     private float distance;
     private bool damaged;
     private float move_vec;
+    private bool move_stop = false;
 
     SpriteRenderer spriteRenderer;
     Color color;
@@ -38,15 +39,15 @@ public class Yami_mushi : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(damaged)
-        {
-            damage_move();
-        }
-        else
+        if(!damaged && !move_stop)
         {
             move();
         }
-        
+        else if(damaged)
+        {
+            damage_move();
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -63,11 +64,19 @@ public class Yami_mushi : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Player")
+        {
+            move_stop = true;
+        }
 
-       
+        if (collision.gameObject.tag == "Enemy(yami)")
+        {
+            move_stop = true;
+        }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

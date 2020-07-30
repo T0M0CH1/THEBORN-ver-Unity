@@ -23,7 +23,7 @@ public class TitleSceneController : MonoBehaviour
     public void Buttonclicked()
     {
         SaveData.halfwayBool = false;
-        SceneManager.LoadScene("Movie");
+        SceneManager.LoadScene("MainScene(alpha)");
     }
     //iwasaki追加
 

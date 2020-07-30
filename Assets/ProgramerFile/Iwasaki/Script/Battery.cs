@@ -9,7 +9,7 @@ public class Battery : MonoBehaviour
     [SerializeField]
     private Sprite[] batteryImage;
     [HideInInspector]
-    public static int battery;
+    public static int battery = 7;
     [SerializeField]
     private GameObject _battery;
     [HideInInspector]
@@ -30,7 +30,6 @@ public class Battery : MonoBehaviour
     void Start()
     {
         is_charging = false;
-        battery = 7;
     }
 
     // Update is called once per frame
@@ -69,6 +68,7 @@ public class Battery : MonoBehaviour
         {
             case 0:
                 SceneManager.LoadScene("GameOver");
+                battery = 7;
                 break;
             case 1:                
                 if (Player.SW_Light)

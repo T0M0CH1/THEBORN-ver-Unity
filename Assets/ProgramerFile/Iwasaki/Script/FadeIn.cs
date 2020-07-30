@@ -12,24 +12,24 @@ public class FadeIn : MonoBehaviour
 
     void Start()
     {
-        rb2d = player.GetComponent<Rigidbody2D>();
-        rb2d.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
-        //フェード用のキャンバス作成
-        fadeCanvas = new GameObject("FadeCanvas");
-        fadeCanvas.transform.SetParent(transform);
+        //rb2d = player.GetComponent<Rigidbody2D>();
+        //rb2d.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+        ////フェード用のキャンバス作成
+        //fadeCanvas = new GameObject("FadeCanvas");
+        //fadeCanvas.transform.SetParent(transform);
 
-        Canvas canvas = fadeCanvas.AddComponent<Canvas>();
-        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvas.sortingOrder = 999;
-        fadeCanvas.AddComponent<CanvasGroup>();
-        fadeCanvas.GetComponent<CanvasGroup>().alpha = 1;
+        //Canvas canvas = fadeCanvas.AddComponent<Canvas>();
+        //canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        //canvas.sortingOrder = 999;
+        //fadeCanvas.AddComponent<CanvasGroup>();
+        //fadeCanvas.GetComponent<CanvasGroup>().alpha = 1;
 
-        //フェード用の画像作成
-        GameObject imageObject = new GameObject("Image");
-        imageObject.transform.SetParent(fadeCanvas.transform, false);
-        imageObject.AddComponent<Image>().color = Color.black;
-        imageObject.GetComponent<RectTransform>().sizeDelta = new Vector2(2000, 1200);
-        StartCoroutine(inFade(3.0f));
+        ////フェード用の画像作成
+        //GameObject imageObject = new GameObject("Image");
+        //imageObject.transform.SetParent(fadeCanvas.transform, false);
+        //imageObject.AddComponent<Image>().color = Color.black;
+        //imageObject.GetComponent<RectTransform>().sizeDelta = new Vector2(2000, 1200);
+        //StartCoroutine(inFade(3.0f));
     }
 
     // Update is called once per frame

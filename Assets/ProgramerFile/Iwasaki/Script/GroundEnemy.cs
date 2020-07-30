@@ -77,11 +77,11 @@ public class GroundEnemy : MonoBehaviour
             //左右反転処理
             if (this.transform.position.x < player.transform.position.x)
             {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+                transform.rotation = Quaternion.Euler(0, 180, 0);
             }
             else
             {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
+                transform.rotation = Quaternion.Euler(0, 0, 0);
             }
         }
     }

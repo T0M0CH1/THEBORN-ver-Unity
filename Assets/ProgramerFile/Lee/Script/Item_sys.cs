@@ -45,6 +45,7 @@ public class Item_sys : MonoBehaviour
     private GameObject _umbrella;
     [SerializeField]
     private GameObject _wachingBar;
+
     //-------------------------------------------------
 
     private int Item_num; //Item 選択判定

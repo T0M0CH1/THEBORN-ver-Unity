@@ -76,11 +76,11 @@ public class Manger_Title : MonoBehaviour
         {
             case 0:
                 SaveData.halfwayBool = false;
-                SceneManager.LoadScene("Movie");
+                SceneManager.LoadScene("MainScene(alpha)");
                 break;
 
             case 1:
-                SceneManager.LoadScene("MainScene");
+                SceneManager.LoadScene("MainScene(alpha)");
                 break;
 
             case 2:
